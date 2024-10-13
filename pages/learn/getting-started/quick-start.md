@@ -52,17 +52,19 @@ Every project is a TypeScript project with the following structure:
 ├── package.json
 ├── tools
 │   ├── extensions.js
-│   └── compose.ts
+│   ├── compose.ts
+│   └── january.config.js
 ├── src
 │   ├── extensions
 │   │   └── user
 │   │       └── index.ts
-│   └── project.ts
+│   └── features
+|       └── task-manager.ts
 └── tsconfig.json
 ```
 
-- `project.ts` file is the entry point and the only file (for now) that you use to build your project.
+- `features` directory is that contains all your features, each exported a separated Typescript file. January auto-detects files in this directory and compiles them accordingly.
 - `src/extensions` is user-defined extensions that you can use to extend the functionality of the project.
 - `tools/extensions.js` file is used to configure the extensions.
-
 - `tools/compose.ts` is a TypeScript file that is used to generate a docker compose file for your project to ease the development on your local machine.
+- `tools/january.config.js` ia a JavaScript file containing configuration needed by January, including what extensions to use.
