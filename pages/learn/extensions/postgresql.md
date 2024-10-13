@@ -21,7 +21,34 @@ CONNECTION_STRING=The connection string to the PostgreSQL database.
 
 #### Development
 
-For development create a postgres container and update the `.env` file
+For development, you need to have a database server running locally which can be via either of the following methods:
+
+##### Using pre-configured docker compose
+
+The scaffolding process creates a `tools/compose.ts` file that is pre-configured to prepare the development environment for you. Just run it and you shall be set.
+
+- Open another terminal window and run the following command:
+
+```bash
+npx tsx tools/compose.ts
+```
+
+- Run postgres container, start the server, and watch for changes
+
+```bash
+docker compose \
+  -f "compose.dev.yml" \
+  up \
+  --build \
+  --watch \
+  --remove-orphans
+```
+
+_This command uses docker `--watch` mode to automatically restart the server when you make changes._
+
+##### Using standalone postgres container
+
+- Create postgres container
 
 ```bash
 docker run \
@@ -34,7 +61,11 @@ docker run \
   postgres:16
 ```
 
-Or you can build compose file using TypeScript, you can find an example in `tools/compose.ts` file.
+When you're done having the database server running, update the `.env` file:
+
+```bash
+CONNECTION_STRING=postgresql://youruser:yourpassword@localhost:5432/yourdatabase
+```
 
 ### Functions
 

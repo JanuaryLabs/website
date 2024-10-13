@@ -33,55 +33,9 @@ npm run dev
 
 ## Prepare the development environment
 
-By default, the project is configured to use PostgreSQL as the database, Hono as the framework, and Fly.io as the cloud provider.
+By default, the project is configured to use SQLite as the database, Hono as the framework, and Fly.io as the cloud provider.
 
-To setup the database, you need to have a database server running locally which can be via either of the following methods:
-
-### Using pre-configured docker compose
-
-The scaffolding process creates a `tools/compose.ts` file that is pre-configured to prepare the development environment for you. Just run it and you shall be set.
-
-- Open another terminal window and run the following command:
-
-```bash
-npx tsx tools/compose.ts
-```
-
-- Run postgres container, start the server, and watch for changes
-
-```bash
-docker compose \
-  -f "compose.dev.yml" \
-  up \
-  --build \
-  --watch \
-  --remove-orphans
-```
-
-_This command uses docker `--watch` mode to automatically restart the server when you make changes._
-
-### Using standalone postgres container
-
-- Create postgres container
-
-```bash
-docker run \
-  --name postgres \
-  -e POSTGRES_PASSWORD=yourpassword \
-  -e POSTGRES_USER=youruser \
-  -e POSTGRES_DB=yourdatabase \
-  -d \
-  -p 5432:5432 \
-  postgres:16
-```
-
-2. Update the `.env` file
-
-```bash
-CONNECTION_STRING=postgresql://youruser:yourpassword@localhost:5432/yourdatabase
-```
-
-3. Run the server
+You can run the server without any additional setup using this command:
 
 ```bash
 npm run dev
@@ -112,4 +66,3 @@ Every project is a TypeScript project with the following structure:
 - `tools/extensions.js` file is used to configure the extensions.
 
 - `tools/compose.ts` is a TypeScript file that is used to generate a docker compose file for your project to ease the development on your local machine.
- 
