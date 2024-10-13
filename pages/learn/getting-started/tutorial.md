@@ -7,12 +7,14 @@ This tutorial demonstrates how to create a Fruits taxification API using January
 
 ## Steps
 
+- [Steps](#steps)
 - [Create a new project](#create-a-new-project)
 - [Add Fruits Feature](#add-fruits-feature)
 - [Add Tables](#add-tables)
 - [Add Workflows](#add-workflows)
 - [Swagger](#swagger)
 - [Deploy to Fly.io](#deploy-to-flyio)
+  - [Connect with Github Actions](#connect-with-github-actions)
 
 ## Create a new project
 
@@ -45,7 +47,7 @@ For the purpose of this tutorial, we will define two tables: **fruits** and **fa
 2. `family`: Categorizes fruits into families
 
 ```ts
-import { feature, project, table, workflow, field } from '@january/core';
+import { feature, project, table, workflow, field } from '@january/declarations';
 
 export default project(
   feature('Fruits', {

@@ -82,7 +82,7 @@ await updateEntity(qb, {
 });
 ```
 
-Each extension have its own set of functions, you can find set of exported function in its documention. for more information about workflow execution, you can check the [Workflow Execution](/docs/execute) sections.
+Each extension have its own set of functions, you can find set of exported function in its documentation. for more information about workflow execution, you can check the [Workflow Execution](/docs/execute) sections.
 
 ### What is a tag?
 

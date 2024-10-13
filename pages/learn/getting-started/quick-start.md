@@ -47,7 +47,7 @@ _This command uses Node.js version 18 `--watch` mode to automatically restart th
 
 Every project is a TypeScript project with the following structure:
 
-```bash
+```
 .
 ├── package.json
 ├── tools
@@ -59,9 +59,10 @@ Every project is a TypeScript project with the following structure:
 │   │   └── user
 │   │       └── index.ts
 │   └── features
-|       └── task-manager.ts
+│       └── task-manager.ts
 └── tsconfig.json
 ```
+
 
 - `features` directory is that contains all your features, each exported a separated Typescript file. January auto-detects files in this directory and compiles them accordingly.
 - `src/extensions` is user-defined extensions that you can use to extend the functionality of the project.
