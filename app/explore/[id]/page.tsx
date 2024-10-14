@@ -43,7 +43,7 @@ export default async function Page({
                 href={
                   process.env.NODE_ENV === 'development'
                     ? `http://localhost:1234?project=${project.id}`
-                    : `https://app.january.sh?project=${project.id}`
+                    : `https://${project.id}.beta.january.sh`
                 }
               >
                 <SiSwagger size={16} className="!size-4" />
