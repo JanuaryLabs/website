@@ -62,10 +62,6 @@ const BlogLayout: FC = async () => {
                 link: 'javascript-bites',
               },
               {
-                label: `What's New`,
-                link: 'whats-new',
-              },
-              {
                 label: `Journal`,
                 link: 'journal',
               },

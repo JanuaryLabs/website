@@ -16,6 +16,10 @@
       "link": "/posts",
       "label": "Blog"
     },
+    "changelog": {
+      "link": "https://github.com/JanuaryLabs/website/discussions/categories/show-and-tell",
+      "label": "Changelog"
+    },
     "roadmap": {
       "link": "https://github.com/orgs/JanuaryLabs/projects/12/views/1",
       "label": "Roadmap",
