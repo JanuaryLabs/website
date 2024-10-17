@@ -25,7 +25,7 @@ workflow('HelloWorld', {
 });
 ```
 
-_This workflow uses an HTTP routing extension (such as hono.dev, express.js, etc.) and a database extension (such as PostgreSQL, MySQL, etc.) to create a fully functional API. It listens for POST requests on the `/example/hello` endpoint and inserts the message from the request body into a database table called `greetings`. The resulting Node.js code is pushed to a Git repository and can be deployed to a server through a deployment extension (such as Fly.io, Vercel, etc.)._
+_This workflow uses an HTTP routing extension (such as hono.dev, express.js, etc.) and a database extension (such as PostgreSQL, MySQL, etc.) to create a fully functional API. It listens for POST requests on the `/example/hello` endpoint and inserts the message from the request body into a database table called `greetings`. The resulting Node.js code is pushed to a Git repository and can be deployed to a server through a deployment extension (such as Serverize, Fly.io, Vercel, etc.)._
 
 January differs from traditional API development by abstracting imperative code and boilerplate, focusing on business logic with a "What to do" rather than "How to do it" approach. Furthermore, traditional development tends to be complex and resource-inefficient due to the numerous tools and services that need integration and maintenance. Through extensions, January simplifies this process by focusing on use-cases rather than specific tools.
 

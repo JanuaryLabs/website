@@ -64,7 +64,7 @@ FLY_API_TOKEN=The API token to authenticate with Fly.io.
 Using CLI
 
 ```bash
-fly tokens create deploy -a <app-name></app-name>
+fly tokens create deploy -a <app-name>
 ```
 
 Using Dashboard

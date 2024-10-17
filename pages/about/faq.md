@@ -39,7 +39,7 @@ Git and GitHub are integral to January. You can connect your GitHub account to J
 
 ### How can I deploy my code?
 
-You can deploy your code to any cloud provider you want by installing the corresponding provider extension. We provide a set of hosting extensions, including Fly.io, Vercel, and Firebase Functions.
+You can deploy your code to any cloud provider you want. January simplifies the deployment process by providing set of deployment extensions that auto generate the deployment configuration for you.
 
 ### Where will my data be stored?
 

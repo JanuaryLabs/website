@@ -3,7 +3,7 @@ title: Tutorial
 layout: learn
 ---
 
-This tutorial demonstrates how to create a Fruits taxification API using January; explaining how to build RESTful APIs, integrate with PostgreSQL, and deploy to Fly.io.
+This tutorial demonstrates how to create a Fruits taxification API using January; explaining how to build RESTful APIs, integrate with a database, and deploy it to Serverize.
 
 ## Steps
 
@@ -12,7 +12,7 @@ This tutorial demonstrates how to create a Fruits taxification API using January
 - [Add Tables](#add-tables)
 - [Add Workflows](#add-workflows)
 - [Swagger](#swagger)
-- [Deploy to Fly.io](#deploy-to-flyio)
+- [Deploy to Serverize](#deploy-to-flyio)
 
 ## Create a new project
 
@@ -47,28 +47,26 @@ For the purpose of this tutorial, we will define two tables: **fruits** and **fa
 ```ts
 import { feature, project, table, workflow, field } from '@january/core';
 
-export default project(
-  feature('Fruits', {
-    workflows: [],
-    tables: {
-      fruits: table({
-        fields: {
-          name: field.shortText(),
-          price: field({ type: 'price' }),
-          family: field.relation({
-            references: useTable('family'),
-            relationship: 'many-to-one',
-          }),
-        },
-      }),
-      family: table({
-        fields: {
-          name: field.enum({ values: ['berries', 'citrus', 'other'] }),
-        },
-      }),
-    },
-  })
-);
+export default feature('Fruits', {
+  workflows: [],
+  tables: {
+    fruits: table({
+      fields: {
+        name: field.shortText(),
+        price: field({ type: 'price' }),
+        family: field.relation({
+          references: useTable('family'),
+          relationship: 'many-to-one',
+        }),
+      },
+    }),
+    family: table({
+      fields: {
+        name: field.enum({ values: ['berries', 'citrus', 'other'] }),
+      },
+    }),
+  },
+});
 ```
 
 ## Add Workflows
@@ -95,8 +93,7 @@ import {
 } from '@extensions/postgresql';
 import { tables } from '@workspace/entities';
 
-export default project(
-  feature('Fruits', {
+export default feature('Fruits', {
     tables: {...},
     workflows: [
       workflow('ListFruitsWorkflow', {
@@ -121,8 +118,7 @@ export default project(
         },
       }),
     ],
-  })
-);
+  });
 ```
 
 The `execute` function is used to execute the query and return the result once the workflow is triggered by an HTTP request.
@@ -168,60 +164,34 @@ To learn more about the functionality of the postgresql extension, check out the
 Each feature will have its own swagger page that you can access at `/{featureName}/swagger` to interact with the API.
 January integrates with [Scalar](https://scalar.com/) to display the swagger page.
 
-## Deploy to Fly.io
+## Deploy to Serverize
 
-To deploy your application to Fly.io, you need to create an account on the [Fly.io website](https://fly.io/). After creating an account, you can create a new app on the [Fly.io dashboard](https://fly.io/apps).
-
-Or you can install and manage you app via the CLI by following the instructions on the [Fly.io website](https://fly.io/docs/getting-started/installing-fly/)
-
----
-
-To create an app through the cli:
-
-- First, login to your Fly.io account:
+- First, login to your Serverize account:
 
 ```bash
-fly auth login
+npx serverize auth signin # or signup
 ```
 
-- Create a new app:
+- Create a new project:
 
 ```bash
-fly apps create <app-name>
-# fly apps create awesome-app
+npx serverize projects create <project-name>
+
+# npx serverize projects create my-awesome-project
 ```
-
-- Set the environment variables
-
-```bash
-fly secrets set CONNECTION_STRING="your remote database connection string"
-```
-
-To find more about the fly.io extension, check out the [fly.io extension documentation](../extensions/fly.md).
 
 - Deploy the project
 
 ```bash
-fly deploy
+npx serverize deploy -p <project-name>
 ```
+
+Check out [Serverize website](https://serverize.sh/) for more information.
 
 ### Connect with Github Actions
 
-Instead of manually deploying the project, you can integrate with Github Actions to deploy your project automatically. Luckily, January had already created a pre-configured Github Actions workflow for you.
+January makes it simple to integrate with Github Actions to deploy your application to Serverize.
 
-To make it Github aware of your Fly.io app, you need to create a new Github repository and set the following secrets:
+To make it Github aware of your Serverize project, you need to create a new Github repository and set the following secrets:
 
-- `FLY_API_TOKEN`: The API token to authenticate with Fly.io.
-- `FLY_APP_NAME`: The name of the Fly.io application.
-
-Once you've set the secrets, you can trigger the workflow manually or automatically on push events.
-
----
-
-The project will be reachable at the following URL:
-
-```bash
-https://<app-name>.fly.dev/
-
-# example: https://awesome-app.fly.dev/
-```
+- `SERVERIZE_API_TOKEN`: The API token to authenticate with Serverize
