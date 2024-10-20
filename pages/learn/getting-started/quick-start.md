@@ -22,7 +22,7 @@ Open it in your favorite code editor with two terminal windows.
 The first terminal window will be used to run the build command and keep it running.
 
 ```bash
-npm run build
+npm run build:watch
 ```
 
 The second terminal window will be used to run the server command and keep it running.
