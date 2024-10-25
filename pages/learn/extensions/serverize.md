@@ -7,7 +7,7 @@ layout: learn
 
 Serverize extension is a deployment extension that you can use to deploy your application to Serverize.
 
-To get started, you've to logic or create an account if you don't have one:
+To get started, you've to create an account if you don't have one:
 
 ```bash
 npx serverize auth signin # or signup
@@ -20,6 +20,8 @@ npx serverize projects create <project-name>
 
 # npx serverize projects create my-awesome-project
 ```
+
+Note: In case you just signed up, an account will be created automatically.
 
 #### Environment Variables
 
