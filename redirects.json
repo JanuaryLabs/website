@@ -17,6 +17,10 @@
       "destination": "/learn"
     },
     {
+      "source": "/learn",
+      "destination": "/learn/getting-started/quick-start"
+    },
+    {
       "source": "/community",
       "destination": "https://discord.gg/CQCCpr3Xs7"
     },

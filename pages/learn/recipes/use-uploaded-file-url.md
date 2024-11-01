@@ -17,7 +17,7 @@ export default project(
     tables: {
       posts: table({
         fields: {
-          title: field({ type: 'short-text' }),
+          title: field.shortText(),
           cover: field({ type: 'url' }),
         },
       }),
@@ -101,7 +101,7 @@ export default project(
     tables: {
       posts: table({
         fields: {
-          title: field({ type: 'short-text' }),
+          title: field.shortText(),
           cover: field({ type: 'url' }),
         },
       }),

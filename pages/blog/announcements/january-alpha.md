@@ -86,8 +86,8 @@ export default project(
     tables: {
       posts: table({
         fields: {
-          title: field({ type: 'short-text' }),
-          content: field({ type: 'long-text' }),
+          title: field.shortText(),
+          content: field.longText(),
           author: field.relation({
             references: useTable('authors'),
             relationship: 'many-to-one',
@@ -96,7 +96,7 @@ export default project(
       }),
       authors: table({
         fields: {
-          name: field({ type: 'short-text' }),
+          name: field.shortText(),
           email: field({ type: 'email', validations: [unique()] }),
         },
       }),

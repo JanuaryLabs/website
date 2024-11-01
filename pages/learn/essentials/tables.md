@@ -17,7 +17,7 @@ feature('OrdersFeature', {
   tables: {
     orders: table({
       fields: {
-        name: field({ type: 'short-text' }),
+        name: field.shortText(),
         price: field({ type: 'price' }),
       },
     }),
@@ -48,7 +48,7 @@ The table function composed of the following elements:
 A field is a column in the table. It defines the type of data that can be stored in the column and the validation rules that apply to the data.
 
 ```ts
-field({ type: 'long-text' });
+field.longText();
 ```
 
 There are two kind of fields:

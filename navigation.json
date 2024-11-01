@@ -1,7 +1,7 @@
 {
   "topNavigation": {
     "learn": {
-      "link": "/learn/getting-started/introduction-to-january",
+      "link": "/learn/getting-started/quick-start",
       "label": "Learn"
     },
     "about": {
@@ -168,6 +168,10 @@
         "recipes": {
           "label": "Recipes",
           "items": {
+            "pagination": {
+              "link": "/learn/recipes/pagination",
+              "label": "Pagination"
+            },
             "useUploadedFileUrl": {
               "link": "/learn/recipes/use-uploaded-file-url",
               "label": "Use Uploaded File URL"

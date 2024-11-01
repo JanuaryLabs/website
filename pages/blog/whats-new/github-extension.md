@@ -121,8 +121,8 @@ feature('Roadmap', {
   tables: {
     posts: table({
       fields: {
-        title: field({ type: 'short-text' }),
-        description: field({ type: 'long-text' }),
+        title: field.shortText(),
+        description: field.longText(),
         issueUrl: field({ type: 'url' }),
       },
     }),
