@@ -26,21 +26,21 @@ workflow('CreateTodo', {
 });
 ```
 
-_This workflow will be triggered by a `POST` request to the path `/{featureName}/tasks`._
+_This workflow will be triggered by a `POST` request to the path `/tasks`._
 
 #### How it works
 
 The HTTP trigger is implemented through a routing extension (e.g., Hono.dev, Express, Koa) included in every project. It translates the workflow into an HTTP endpoint following this pattern:
 
 ```bash
-/{featureName}/{workflowTag}/{triggerPath}
+/{workflowTag}/{triggerPath}
 ```
 
 Supported HTTP methods include GET, POST, PUT, PATCH, DELETE, HEAD, and OPTIONS, though availability may vary based on the routing extension used.
 
 ### How to use it?
 
-You can access the request body, query parameters, and headers using the trigger object.
+You can access the request body, query parameters, and headers using the trigger object and after ensuring the client data is valid using the `input` function, they can be used in the workflow.
 
 ```ts
 workflow('UpdateTodo', {
@@ -48,12 +48,26 @@ workflow('UpdateTodo', {
   trigger: trigger.http({
     method: 'patch',
     path: '/:id',
+    input: trigger => ({
+      id: {
+        select: trigger.path.id,
+        against: z.string().uuid(),
+      },
+      title: {
+        select: trigger.body.title,
+        against: z.string().trim().min(1),
+      },
+      completed: {
+        select: trigger.body.completed,
+        against: z.boolean(),
+      },
+    }),
   }),
-  execute: async ({ trigger }) => {
+  execute: async ({ input }) => {
     return {
-      id: trigger.path.id,
-      title: trigger.body.title,
-      completed: trigger.body.completed,
+      id: input.id,
+      title: input.title,
+      completed: input.completed,
     };
   },
 });

@@ -110,6 +110,10 @@
               "link": "/learn/triggers/http",
               "label": "HTTP"
             },
+            "stream": {
+              "link": "/learn/triggers/stream",
+              "label": "Stream"
+            },
             "sse": {
               "link": "/learn/triggers/sse",
               "label": "SSE"
@@ -121,6 +125,18 @@
             "schedule": {
               "link": "/learn/triggers/schedule",
               "label": "Schedule"
+            },
+            "multipart": {
+              "link": "/learn/triggers/multipart",
+              "label": "Multipart"
+            },
+            "tus": {
+              "link": "/learn/triggers/tus",
+              "label": "Tus"
+            },
+            "file": {
+              "link": "/learn/triggers/file",
+              "label": "File"
             },
             "github": {
               "link": "/learn/triggers/github",

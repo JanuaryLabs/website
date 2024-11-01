@@ -8,6 +8,7 @@ layout: learn
 Triggers are used to start workflows based on specific events or conditions.
 
 - HTTP
+- Stream
 - SSE
 - Websocket
 - Github
