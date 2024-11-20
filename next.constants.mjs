@@ -30,7 +30,7 @@ export const VERCEL_REVALIDATE = Number(
  * This is used for static/without a Node.js server hosting, such as on our
  * legacy Website Build Environment on Node.js's DigitalOcean Droplet.
  *
- * Note that this is a manual Environment Variable defined by us during `npm run deploy`
+ * Note that this is a manual Environment Variable defined by us during `npm run build`
  */
 export const ENABLE_STATIC_EXPORT =
   process.env.NEXT_PUBLIC_STATIC_EXPORT === 'true' ||

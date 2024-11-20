@@ -1,26 +1,26 @@
-FROM node:18-alpine AS base
+FROM node:20-alpine AS base
+WORKDIR /app
 
-# Install dependencies only when needed
-# FROM base AS deps
-# RUN apk add --no-cache libc6-compat
 
-# WORKDIR /app
-# COPY package*.json ./
-# RUN npm ci --no-audit --no-fund --no-warnings --no-deprecation
+FROM base AS deps
+WORKDIR /app
+COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
+RUN npm ci
 
-# Build
+
 FROM base AS builder
 WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+RUN npm run build
 
-# COPY --from=deps /app/node_modules ./node_modules/
-COPY ./build/ ./build/
 
-# RUN npm run deploy
-
-FROM nginx:alpine
-WORKDIR /app
-
-COPY --from=builder /app/build /usr/share/nginx/html
-
-EXPOSE 80
+FROM nginxinc/nginx-unprivileged AS start
+WORKDIR /usr/share/nginx/html
+COPY --from=builder /app/build .
+ENV PORT=8080
+USER nginx
+EXPOSE 8080
+HEALTHCHECK CMD curl -f / || exit 1
 CMD ["nginx", "-g", "daemon off;"]

@@ -31,7 +31,7 @@ jobs:
         run: npm install  --no-audit --no-fund
 
       - name: Provide Turborepo Arguments
-        run: npm run deploy
+        run: npm run build
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
