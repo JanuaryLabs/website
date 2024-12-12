@@ -1,6 +1,7 @@
 ```ts
 import { on } from 'node:stream';
 import { merge } from 'rxjs';
+import { workflow, trigger } from '@january/declarative';
 
 workflow('StreamErrors', {
   tag: 'realtime',

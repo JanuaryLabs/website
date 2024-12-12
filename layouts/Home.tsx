@@ -14,6 +14,7 @@ import sseTrigger from '!!raw-loader!../components/Examples/sse-trigger.md';
 import webosocketTrigger from '!!raw-loader!../components/Examples/websocket-trigger.md';
 import limitToCountry from '!!raw-loader!../components/Examples/limit-to-country.md';
 import scheduleTrigger from '!!raw-loader!../components/Examples/schedule-trigger.md';
+import queueTrigger from '!!raw-loader!../components/Examples/queue-trigger.md';
 import sendEmail from '!!raw-loader!../components/Examples/send-email.md';
 import uploadFile from '!!raw-loader!../components/Examples/upload-file.md';
 
@@ -73,12 +74,12 @@ const examplesTabs = [
         ),
       },
       {
-        id: 'githubTrigger',
-        title: 'Github Trigger',
+        id: 'jobTrigger',
+        title: 'Process Job',
         content: (
           <Mdx
             hideCopyButton={true}
-            source={githubTrigger}
+            source={queueTrigger}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
               Footer: TryProject,
@@ -93,6 +94,20 @@ const examplesTabs = [
           <Mdx
             hideCopyButton={true}
             source={scheduleTrigger}
+            components={{
+              h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
+              Footer: TryProject,
+            }}
+          />
+        ),
+      },
+      {
+        id: 'githubTrigger',
+        title: 'Github Trigger',
+        content: (
+          <Mdx
+            hideCopyButton={true}
+            source={githubTrigger}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
               Footer: TryProject,

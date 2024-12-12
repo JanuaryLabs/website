@@ -130,6 +130,18 @@
               "link": "/learn/triggers/websocket",
               "label": "WebSocket"
             },
+            "queue": {
+              "link": "/learn/triggers/queue",
+              "label": "Queue"
+            },
+            "file": {
+              "link": "/learn/triggers/file",
+              "label": "File"
+            },
+            "github": {
+              "link": "/learn/triggers/github",
+              "label": "GitHub"
+            },
             "schedule": {
               "link": "/learn/triggers/schedule",
               "label": "Schedule"
@@ -141,14 +153,6 @@
             "tus": {
               "link": "/learn/triggers/tus",
               "label": "Tus"
-            },
-            "file": {
-              "link": "/learn/triggers/file",
-              "label": "File"
-            },
-            "github": {
-              "link": "/learn/triggers/github",
-              "label": "GitHub"
             }
           }
         },

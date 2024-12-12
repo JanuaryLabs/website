@@ -1,8 +1,10 @@
 ```ts
+import { trigger, workflow } from '@january/declarative';
+
 workflow('ReportServerHealth', {
   tag: 'posts',
   trigger: trigger.schedule({
-    pattern: '0 0 * * *',
+    pattern: '0 0 * * *', // at midnight
   }),
   execute: async () => {
     // do something
