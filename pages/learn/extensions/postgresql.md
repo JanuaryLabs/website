@@ -12,12 +12,12 @@ PostgreSQL extension is a database extension that allows you to interact with a 
 Update `january.config.js` file to include the following:
 
 ```ts
-import { sqlite } from '@january/extensions/sqlite';
+import { postgresql } from '@january/extensions/typeorm';
 
 export default defineConfig({
   extensions: [
     // ... other extensions
-    sqlite(),
+    postgresql(),
   ],
 });
 ```
