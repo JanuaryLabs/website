@@ -9,6 +9,7 @@ import { ThemeProvider } from '@/providers/themeProvider';
 
 import '@/styles/index.css';
 import { PHProvider } from './providers';
+import Script from 'next/script';
 
 const fontClasses = classNames(
   MONO.variable,
@@ -37,12 +38,17 @@ const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
             <BaseLayout>{children}</BaseLayout>
           </ThemeProvider>
         </PHProvider>
-
         {VERCEL_ENV && (
           <>
             <SpeedInsights />
           </>
         )}
+        <Script
+          data-site-id="january.sh"
+          defer
+          strategy="afterInteractive"
+          src="https://assets.onedollarstats.com/tracker.js"
+        />
       </body>
     </html>
   );
