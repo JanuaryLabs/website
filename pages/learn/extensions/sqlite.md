@@ -1,11 +1,11 @@
 ---
-title: PostgreSQL Extension
+title: SQLite Extension
 layout: learn
 ---
 
-## PostgreSQL Extension
+## SQLite Extension
 
-PostgreSQL extension is a database extension that allows you to interact with a Postgres database.
+SQLite extension is a database extension that allows you to interact with a SQLite database.
 
 ### Setup
 
@@ -35,30 +35,50 @@ ORM_SYNCHRONIZE=Whether to synchronize the database schema or not. Default is fa
 
 #### Production
 
-You can use providers such as [Fly.io](https://fly.io/), [Neon.tech](https://neon.tech/), [DigitalOcean](https://digitalocean.com/), etc. Or run your own database server.
+SQLite is a file-based database which means you have to make sure that the file is accessible by the application (give proper permissions when running inside docker container).
+
+The recommnedation for production is to use a hosted database service like [TursoDB](https://www.turso.tech) to host your SQLite database. That's being said if you want to host the SQLite database on your own server then you should mount it to a named volume so that the data is persisted even when the container is removed.
+
+To put it more precisely, the recommendation in order is as follows:
+
+- Use something like [Turso](https://www.turso.tech) to host your SQLite database.
+- Mount an _object storage_ to the container to store the SQLite database completely outside the server.
+- Use a named volume to store the SQLite database on the server yet outside the container.
 
 From the application perspective it needs the following environment variables:
 
 ```txt
-CONNECTION_STRING=The connection string to the PostgreSQL database.
+CONNECTION_STRING=The file path to the SQLite database
+```
+
+For example:
+
+```txt
+CONNECTION_STRING=/data/my-app-database.sqlite
+```
+
+in the `docker-compose.yml` file:
+
+```yml
+services:
+  my-app:
+    image: my-app
+    volumes:
+      - my-app-data:/data
+    environment:
+      CONNECTION_STRING: /data/my-app-database.sqlite
+
+volumes:
+  my-app-data:
 ```
 
 #### Development
 
-For development create a postgres container and update the `.env` file
+In development it's fine to use SQLite database file on your local machine. You can set the `CONNECTION_STRING` environment variable to the path of the SQLite database file.
 
-```bash
-docker run \
-  --name postgres \
-  -e POSTGRES_PASSWORD=yourpassword \
-  -e POSTGRES_USER=youruser \
-  -e POSTGRES_DB=yourdatabase \
-  -d \
-  -p 5432:5432 \
-  postgres:16
+```txt
+CONNECTION_STRING=./my-app-database.sqlite
 ```
-
-Or you can build compose file using TypeScript, you can find an example in `tools/compose.ts` file.
 
 ### Functions
 
@@ -92,7 +112,7 @@ import {
   createQueryBuilder,
   deferredJoinPagination,
   execute,
-} from '@extensions/postgresql';
+} from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs');
@@ -115,7 +135,7 @@ import {
   createQueryBuilder,
   cursorPagination,
   execute,
-} from '@extensions/postgresql';
+} from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs');
@@ -134,7 +154,7 @@ import {
   createQueryBuilder,
   execute,
   limitOffsetPagination,
-} from '@extensions/postgresql';
+} from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs');
@@ -153,7 +173,7 @@ Insert a record in a table.
 **Insert a blog**:
 
 ```ts
-import { saveEntity } from '@extensions/postgresql';
+import { saveEntity } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 await saveEntity(tables.blogs, {
@@ -171,7 +191,7 @@ Set a column or more in a record in a table.
 **Change the title of a blog**:
 
 ```ts
-import { createQueryBuilder, updateEntity } from '@extensions/postgresql';
+import { createQueryBuilder, updateEntity } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where('id = :id', {
@@ -189,7 +209,7 @@ Delete a record or many in a table given a query.
 **Delete a blog**:
 
 ```ts
-import { createQueryBuilder, removeEntity } from '@extensions/postgresql';
+import { createQueryBuilder, removeEntity } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where('id = :id', {
@@ -204,7 +224,7 @@ This function will delete one blog that has the id from the request path.
 **Delete all blogs**:
 
 ```ts
-import { createQueryBuilder, removeEntity } from '@extensions/postgresql';
+import { createQueryBuilder, removeEntity } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs');
@@ -220,7 +240,7 @@ Check if at least one record exists in a table given a query.
 **Check if a blog exists**:
 
 ```ts
-import { createQueryBuilder, exists } from '@extensions/postgresql';
+import { createQueryBuilder, exists } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where('id = :id', {
@@ -232,7 +252,7 @@ const exists = await exists(qb);
 **Check if a blog exists by title**:
 
 ```ts
-import { createQueryBuilder } from '@extensions/postgresql';
+import { createQueryBuilder } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where('title = :title', {
@@ -250,7 +270,7 @@ Insert a record if it does not exist, or update it if it already exists, based o
 **Upsert a blog**:
 
 ```ts
-import { createQueryBuilder, upsertEntity } from '@extensions/postgresql';
+import { createQueryBuilder, upsertEntity } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 await upsertEntity(
@@ -285,7 +305,7 @@ table('Blogs', {
 ```
 
 ```ts
-import { createQueryBuilder, upsertEntity } from '@extensions/postgresql';
+import { createQueryBuilder, upsertEntity } from '@extensions/sqlite';
 
 await upsertEntity(
   tables.blogs,
@@ -317,7 +337,7 @@ table('Blogs', {
 You can set the `conflictFields` property as follows:
 
 ```ts
-import { createQueryBuilder, upsertEntity } from '@extensions/postgresql';
+import { createQueryBuilder, upsertEntity } from '@extensions/sqlite';
 
 await upsertEntity(
   tables.blogs,
@@ -338,7 +358,7 @@ Search for records in a table by specifying columns to search within.
 **Search for blogs**:
 
 ```ts
-import { createQueryBuilder, execute } from '@extensions/postgresql';
+import { createQueryBuilder, execute } from '@extensions/sqlite';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where(
   'title ILIKE :search OR content ILIKE :search',
@@ -361,7 +381,7 @@ Increment a column in a record in a table.
 **Increment the views of a blog**:
 
 ```ts
-import { createQueryBuilder, increment } from '@extensions/postgresql';
+import { createQueryBuilder, increment } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where('id = :id', {
@@ -378,7 +398,7 @@ Decrement a column in a record in a table.
 **Downvote a blog**:
 
 ```ts
-import { createQueryBuilder, decrement } from '@extensions/postgresql';
+import { createQueryBuilder, decrement } from '@extensions/sqlite';
 import { tables } from '@workspace/entities';
 
 const qb = createQueryBuilder(tables.blogs, 'blogs').where('id = :id', {
@@ -395,7 +415,7 @@ You can execute raw queries using the `sql` function.
 **Execute a raw query**:
 
 ```ts
-import { sql } from '@extensions/postgresql';
+import { sql } from '@extensions/sqlite';
 import { workflow, trigger } from '@january/declarative';
 
 workflow('ListBlogsWorkflow', {

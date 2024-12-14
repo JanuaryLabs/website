@@ -159,6 +159,10 @@
         "extensions": {
           "label": "Extensions",
           "items": {
+            "sqlite": {
+              "link": "/learn/extensions/sqlite",
+              "label": "SQLite"
+            },
             "postgresql": {
               "link": "/learn/extensions/postgresql",
               "label": "PostgreSQL"
