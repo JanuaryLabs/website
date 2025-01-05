@@ -25,6 +25,7 @@ export interface NavigationEntry {
   link?: string;
   items?: Record<string, NavigationEntry>;
   target?: HTMLAttributeAnchorTarget | undefined;
+  description?: string;
 }
 
 export interface SiteNavigation {

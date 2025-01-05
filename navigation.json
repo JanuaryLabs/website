@@ -16,6 +16,11 @@
       "link": "/posts",
       "label": "Blog"
     },
+    "serverize": {
+      "link": "https://www.serverize.sh",
+      "label": "Serverize",
+      "target": "_blank"
+    },
     "roadmap": {
       "link": "https://github.com/orgs/JanuaryLabs/projects/12/views/1",
       "label": "Roadmap",

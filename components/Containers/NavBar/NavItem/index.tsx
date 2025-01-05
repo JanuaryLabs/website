@@ -24,15 +24,21 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
 }) => (
   <ActiveLink
     href={href}
-    className={classNames(styles.navItem, styles[type], className)}
+    className={classNames(
+      styles[type],
+      `inline-flex items-center gap-2 rounded px-3 py-2 hover:bg-neutral-100 hover:dark:bg-neutral-900`,
+      className
+    )}
     activeClassName={styles.active}
     allowSubPath={href.startsWith('/')}
     target={target}
   >
-    <span className={styles.label}>{children}</span>
+    <span className={'text-sm font-medium leading-5'}>{children}</span>
 
     {((type === 'nav' && href.startsWith('http')) || target === '_blank') && (
-      <ArrowUpRightIcon className={styles.icon} />
+      <ArrowUpRightIcon
+        className={`size-3 text-neutral-500 dark:text-neutral-200`}
+      />
     )}
   </ActiveLink>
 );
