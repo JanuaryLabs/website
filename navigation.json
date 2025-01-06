@@ -98,6 +98,10 @@
               "link": "/learn/essentials/tables",
               "label": "Tables"
             },
+            "relations": {
+              "link": "/learn/essentials/relations",
+              "label": "Relations"
+            },
             "workflow": {
               "link": "/learn/essentials/workflow",
               "label": "Workflow"
