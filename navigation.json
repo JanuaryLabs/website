@@ -202,6 +202,19 @@
             }
           }
         },
+        "developer-experience": {
+          "label": "Developer Experience",
+          "items": {
+            "local-development": {
+              "link": "/learn/developer-experience/local-development",
+              "label": "Local Development"
+            },
+            "cloud-development": {
+              "link": "/learn/developer-experience/cloud-development",
+              "label": "Cloud Development"
+            }
+          }
+        },
         "recipes": {
           "label": "Recipes",
           "items": {
