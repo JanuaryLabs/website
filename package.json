@@ -28,7 +28,8 @@
     "lint:fix": "turbo run lint:md lint:js lint:css --no-cache -- --fix",
     "prettier": "prettier \"**/*.{js,mjs,ts,tsx,md,mdx,json,yml,css}\" --check --cache --cache-strategy=content --cache-location=.prettiercache",
     "prettier:fix": "npm run prettier -- --write",
-    "format": "npm run lint:fix && npm run prettier:fix"
+    "format": "npm run lint:fix && npm run prettier:fix",
+    "prepare": "git config core.hooksPath .husky || exit 0"
   },
   "dependencies": {
     "@expressive-code/plugin-collapsible-sections": "^0.35.3",
@@ -72,7 +73,6 @@
     "github-slugger": "~2.0.0",
     "glob": "~10.4.1",
     "gray-matter": "~4.0.3",
-    "lint-staged": "15.2.5",
     "lucide-react": "^0.445.0",
     "mermaid": "^10.9.1",
     "next": "~14.2.4",
@@ -128,6 +128,7 @@
     "@types/semver": "~7.5.8",
     "@typescript-eslint/eslint-plugin": "7.11.0",
     "@typescript-eslint/parser": "7.11.0",
+    "@zukhruf/git-hooks": "0.3.41",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "8.57.0",
