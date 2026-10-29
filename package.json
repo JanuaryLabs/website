@@ -149,5 +149,13 @@
     "stylelint-selector-bem-pattern": "4.0.0",
     "turbo": "2.0.6",
     "user-agent-data-types": "0.4.2"
+  },
+  "allowScripts": {
+    "sharp": true,
+    "esbuild": true,
+    "core-js": false,
+    "core-js-pure": false,
+    "protobufjs": false,
+    "@vercel/speed-insights": false
   }
 }
