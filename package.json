@@ -12,10 +12,6 @@
     "name": "Node.js Website Working Group"
   },
   "license": "MIT",
-  "engines": {
-    "node": "v20"
-  },
-  "packageManager": "npm@10.7.0",
   "scripts": {
     "scripts:release-post": "cross-env NODE_NO_WARNINGS=1 node scripts/release-post/index.mjs",
     "dev": "cross-env NODE_NO_WARNINGS=1 next dev",
