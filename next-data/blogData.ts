@@ -9,7 +9,9 @@ import type { BlogPostsRSC } from '@/types';
 // Prevents React from throwing an Error when not able to fulfil a request
 // due to missing category or internal processing errors
 const parseBlogDataResponse = (data: string): BlogPostsRSC =>
-  data.startsWith('{') ? JSON.parse(data) : { posts: [], pagination: {} };
+  data.startsWith('{')
+    ? JSON.parse(data)
+    : { posts: [], pagination: { next: null, prev: null, pages: 0, total: 0 } };
 
 const getBlogData = (cat: string, page?: number): Promise<BlogPostsRSC> => {
   // When we're using Static Exports the Next.js Server is not running (during build-time)
