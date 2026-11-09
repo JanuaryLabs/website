@@ -36,7 +36,3 @@ tsconfig.tsbuildinfo
 
 # Metadata Files
 CODEOWNERS
-
-# Prettier's Handlebar parser is limited and chokes on some syntax features
-# https://github.com/prettier/prettier/issues/11834
-scripts/release-post/template.hbs
