@@ -1,37 +1,54 @@
-import { fireEvent, renderHook, act } from '@testing-library/react';
+import { fireEvent, renderHook, act, waitFor } from '@testing-library/react';
 
 import useBottomScrollListener from '@/hooks/react-client/useBottomScrollListener';
 
 describe('useBottomScrollListener', () => {
-  it('should call the callback when the scroll reaches the bottom', () => {
+  it('should call the callback when the scroll reaches the bottom', async () => {
     const callback = jest.fn();
-    renderHook(() => useBottomScrollListener(callback));
+    renderHook(() => useBottomScrollListener(callback, 0));
+
+    // jsdom has no layout, so the page height a browser computes is set here.
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      configurable: true,
+      value: 300,
+    });
+    document.documentElement.scrollTop = 100;
 
     act(() => {
-      fireEvent.scroll(window, {
-        target: { scrollY: 100, innerHeight: 200, scrollHeight: 200 },
-      });
+      fireEvent.scroll(window, { target: { innerHeight: 200 } });
     });
 
-    // timout is needed because the callback is called in the next tick
-    setTimeout(() => {
-      expect(callback).toHaveBeenCalled();
-    }, 1);
+    await waitFor(() => expect(callback).toHaveBeenCalledTimes(1));
   });
 
-  it('should not call the callback when the scroll does not reach the bottom', () => {
+  it('should not call the callback when the scroll does not reach the bottom', async () => {
     const callback = jest.fn();
-    renderHook(() => useBottomScrollListener(callback));
+    renderHook(() => useBottomScrollListener(callback, 0));
+
+    // jsdom has no layout, so the page height a browser computes is set here.
+    Object.defineProperty(document.documentElement, 'scrollHeight', {
+      configurable: true,
+      value: 300,
+    });
+    document.documentElement.scrollTop = 50;
 
     act(() => {
-      fireEvent.scroll(window, {
-        target: { scrollY: 100, innerHeight: 200, scrollHeight: 300 },
-      });
+      fireEvent.scroll(window, { target: { innerHeight: 200 } });
     });
 
-    // timout is needed because the callback is called in the next tick
-    setTimeout(() => {
-      expect(callback).not.toHaveBeenCalled();
-    }, 1);
+    // A callback the scroll scheduled with a delay of 0 is queued before this
+    // timer, so it has already run when this timer fires.
+    await new Promise(resolve => setTimeout(resolve, 0));
+
+    expect(callback).not.toHaveBeenCalled();
+
+    // The listener must still answer, or the assertion above proves nothing.
+    document.documentElement.scrollTop = 100;
+
+    act(() => {
+      fireEvent.scroll(window, { target: { innerHeight: 200 } });
+    });
+
+    await waitFor(() => expect(callback).toHaveBeenCalledTimes(1));
   });
 });

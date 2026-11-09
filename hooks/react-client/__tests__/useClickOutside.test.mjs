@@ -5,22 +5,16 @@ import useClickOutside from '@/hooks/react-client/useClickOutside';
 describe('useClickOutside', () => {
   it('should call the callback function when clicked outside the element', () => {
     const fn = jest.fn();
-    const { rerender } = renderHook(() =>
-      useClickOutside({ current: null }, fn)
-    );
+    const ref = { current: document.createElement('div') };
+    renderHook(() => useClickOutside(ref, fn));
 
     const mockEvent = new MouseEvent('click', { bubbles: true });
-    const mockElement = document.createElement('div');
-
-    rerender({ current: mockElement }, fn);
 
     act(() => {
       document.dispatchEvent(mockEvent);
     });
 
-    setTimeout(() => {
-      expect(fn).toHaveBeenCalledTimes(1);
-    }, 1);
+    expect(fn).toHaveBeenCalledTimes(1);
   });
 
   it('should not call the callback function when clicked inside the element', () => {
