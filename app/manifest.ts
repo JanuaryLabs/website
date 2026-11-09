@@ -28,3 +28,5 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
   };
 }
+
+export const dynamic = 'force-static';

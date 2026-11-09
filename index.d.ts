@@ -10,9 +10,9 @@ declare module '.txt.d.ts;' {
   const content: string;
   export default content;
 }
-declare module '!!raw-loader!*' {
+declare module '*.md' {
   const contents: string;
-  export = contents;
+  export default contents;
 }
 
 declare type PromiseReturnType<T extends (...args: any) => any> = T extends (

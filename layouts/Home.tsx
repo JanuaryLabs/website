@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-
 import { type FC, type PropsWithChildren } from 'react';
 
 import GlowingBackdrop from '@/components/Common/GlowingBackdrop';
@@ -7,16 +5,16 @@ import { Mdx } from '@/components/mdx';
 import MDXCodeTabs from '@/components/MDX/CodeTabs';
 import CenteredLayout from '@/layouts/Centered';
 
-import authenticatedUser from '!!raw-loader!../components/Examples/authenticated-user.md';
-import githubTrigger from '!!raw-loader!../components/Examples/github-trigger.md';
-import httpTrigger from '!!raw-loader!../components/Examples/http-trigger.md';
-import sseTrigger from '!!raw-loader!../components/Examples/sse-trigger.md';
-import webosocketTrigger from '!!raw-loader!../components/Examples/websocket-trigger.md';
-import limitToCountry from '!!raw-loader!../components/Examples/limit-to-country.md';
-import scheduleTrigger from '!!raw-loader!../components/Examples/schedule-trigger.md';
-import queueTrigger from '!!raw-loader!../components/Examples/queue-trigger.md';
-import sendEmail from '!!raw-loader!../components/Examples/send-email.md';
-import uploadFile from '!!raw-loader!../components/Examples/upload-file.md';
+import authenticatedUser from '@/components/Examples/authenticated-user.md';
+import githubTrigger from '@/components/Examples/github-trigger.md';
+import httpTrigger from '@/components/Examples/http-trigger.md';
+import sseTrigger from '@/components/Examples/sse-trigger.md';
+import webosocketTrigger from '@/components/Examples/websocket-trigger.md';
+import limitToCountry from '@/components/Examples/limit-to-country.md';
+import scheduleTrigger from '@/components/Examples/schedule-trigger.md';
+import queueTrigger from '@/components/Examples/queue-trigger.md';
+import sendEmail from '@/components/Examples/send-email.md';
+import uploadFile from '@/components/Examples/upload-file.md';
 
 import { TryProject } from '@/components/Common/CodeBox/try-project';
 import styles from './layouts.module.css';

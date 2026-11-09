@@ -13,9 +13,6 @@ const nextConfig = {
   // We intentionally disable Next.js's built-in i18n support
   // as we dom have our own i18n and internationalisation engine
   i18n: null,
-  // We want to always enforce that SWC minifies the sources even during Development mode
-  // so that bundles are minified on-the-go. SWF minifying is fast, and has almost no penalties
-  swcMinify: true,
   // We don't use trailing slashes on URLs from the Node.js Website
   trailingSlash: false,
   // We don't want to redirect with trailing slashes
@@ -64,25 +61,11 @@ const nextConfig = {
   // We don't want to run Type Checking on Production Builds
   // as we already check it on the CI within each Pull Request
   typescript: { ignoreBuildErrors: true },
-  // We don't want to run ESLint Checking on Production Builds
-  // as we already check it on the CI within each Pull Request
-  // we also configure ESLint to run its lint checking on all files (next lint)
-  eslint: { dirs: ['.'], ignoreDuringBuilds: true },
-  // Adds custom WebPack configuration to our Next.hs setup
-  webpack: function (config) {
-    // Next.js WebPack Bundler does not know how to handle `.mjs` files on `node_modules`
-    // This is not an issue when using TurboPack as it uses SWC and it is ESM-only
-    // Once Next.js uses Turbopack for their build process we can remove this
-    config.module.rules.push({
-      test: /\.m?js$/,
-      type: 'javascript/auto',
-      resolve: { fullySpecified: false },
-    });
-
-    return config;
+  // The home page shows the examples in components/Examples as plain text
+  turbopack: {
+    rules: { '*.md': { loaders: ['raw-loader'], as: '*.js' } },
   },
   experimental: {
-    esmExternals: 'loose',
     // Some of our static pages from `getStaticProps` have a lot of data
     // since we pass the fully-compiled MDX page from `MDXRemote` through
     // a page's static props.
@@ -94,10 +77,6 @@ const nextConfig = {
       '@radix-ui/react-select',
       '@radix-ui/react-toast',
     ],
-    // Removes the warning regarding the WebPack Build Worker
-    webpackBuildWorker: false,
-    // Enables Next.js's Instrumentation Hook
-    instrumentationHook: false,
   },
 };
 export default nextConfig;

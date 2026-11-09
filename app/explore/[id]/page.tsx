@@ -10,13 +10,12 @@ export async function generateStaticParams() {
   return getProjects();
 }
 
-export default async function Page({
-  params,
-}: {
-  params: {
+export default async function Page(props: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }) {
+  const params = await props.params;
   const project = await getProject(params.id);
   const info = {
     framework: 'Hono',

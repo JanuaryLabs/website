@@ -1,5 +1,4 @@
 import provideReleaseData from '@/next-data/providers/releaseData';
-import { VERCEL_REVALIDATE } from '@/next.constants.mjs';
 
 // This is the Route Handler for the `GET` method which handles the request
 // for generating static data related to the Node.js Release Data
@@ -25,4 +24,4 @@ export const dynamic = 'error';
 // Ensures that this endpoint is invalidated and re-executed every X minutes
 // so that when new deployments happen, the data is refreshed
 // @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = VERCEL_REVALIDATE;
+export const revalidate = 300;

@@ -16,7 +16,7 @@ import styles from './index.module.css';
 // Transforms a code element with plain text content into a more structured
 // format for rendering with line numbers
 const transformCode = (code: ReactNode): ReactNode => {
-  if (!isValidElement(code)) {
+  if (!isValidElement<PropsWithChildren>(code)) {
     // Early return when the `CodeBox` child is not a valid element since the
     // type is a ReactNode, and can assume any value
     return code;

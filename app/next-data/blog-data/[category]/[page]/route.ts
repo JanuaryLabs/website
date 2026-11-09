@@ -3,17 +3,17 @@ import {
   provideBlogPosts,
   providePaginatedBlogPosts,
 } from '@/next-data/providers/blogData';
-import { VERCEL_REVALIDATE } from '@/next.constants.mjs';
 import type { NextRequest } from 'next/server';
 
 type StaticParams = {
-  params: { locale: string; category: string; page: string };
+  params: Promise<{ locale: string; category: string; page: string }>;
 };
 
 // This is the Route Handler for the `GET` method which handles the request
 // for providing Blog Posts for Blog Categories and Pagination Metadata
 // @see https://nextjs.org/docs/app/building-your-application/routing/router-handlers
-export const GET = async (_: NextRequest, { params }: StaticParams) => {
+export const GET = async (_: NextRequest, props: StaticParams) => {
+  const params = await props.params;
   const requestedPage = Number(params.page);
 
   const data =
@@ -63,4 +63,4 @@ export const dynamic = 'error';
 // Ensures that this endpoint is invalidated and re-executed every X minutes
 // so that when new deployments happen, the data is refreshed
 // @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = VERCEL_REVALIDATE;
+export const revalidate = 300;

@@ -5,14 +5,13 @@ import { notFound } from 'next/navigation';
 import { setClientContext } from '@/client-context';
 import { MDXRenderer } from '@/components/mdxRenderer';
 import WithLayout from '@/components/withLayout';
-import { ENABLE_STATIC_EXPORT, VERCEL_REVALIDATE } from '@/next.constants.mjs';
 import { DYNAMIC_ROUTES, PAGE_VIEWPORT } from '@/next.dynamic.constants.mjs';
 import { dynamicRouter } from '@/next.dynamic.mjs';
 import { MatterProvider } from '@/providers/matterProvider';
 import type { ClientSharedServerContext } from '@/types';
 
 type DynamicStaticPaths = { path: Array<string> };
-type DynamicParams = { params: DynamicStaticPaths };
+type DynamicParams = { params: Promise<DynamicStaticPaths> };
 
 // This is the default Viewport Metadata
 // @see https://nextjs.org/docs/app/api-reference/functions/generate-viewport#generateviewport-function
@@ -20,8 +19,8 @@ export const generateViewport = async () => ({ ...PAGE_VIEWPORT });
 
 // This generates each page's HTML Metadata
 // @see https://nextjs.org/docs/app/api-reference/functions/generate-metadata
-export const generateMetadata = async ({ params }: DynamicParams) => {
-  const { path = [] } = params;
+export const generateMetadata = async (props: DynamicParams) => {
+  const { path = [] } = await props.params;
 
   const pathname = dynamicRouter.getPathname(path);
 
@@ -39,25 +38,17 @@ const mapRoutes = async () => {
 // This provides all the possible paths that can be generated statically
 // + provides all the paths that we support on the Node.js Website
 export const generateStaticParams = async () => {
-  const paths: Array<DynamicStaticPaths> = [];
+  const allAvailableRoutes = await mapRoutes();
 
-  // If static exports are enabled we need to compute all available routes
-  // And then append them to Next.js's Route Engine
-  if (ENABLE_STATIC_EXPORT) {
-    const allAvailableRoutes = await mapRoutes();
-
-    paths.push(...allAvailableRoutes.flat());
-  }
-
-  return paths.sort();
+  return allAvailableRoutes.flat().sort();
 };
 
 // This method parses the current pathname and does any sort of modifications needed on the route
 // then it proceeds to retrieve the Markdown file and parse the MDX Content into a React Component
 // finally it returns (if the locale and route are valid) the React Component with the relevant context
 // and attached context providers for rendering the current page
-const getPage: FC<DynamicParams> = async ({ params }) => {
-  const { path = [] } = params;
+const getPage: FC<DynamicParams> = async props => {
+  const { path = [] } = await props.params;
 
   // Gets the current full pathname for a given path
   const pathname = dynamicRouter.getPathname(path);
@@ -124,10 +115,9 @@ const getPage: FC<DynamicParams> = async ({ params }) => {
   return notFound();
 };
 
-// In this case we want to catch-all possible pages even to this page. This ensures that we use our 404
-// and that all pages including existing ones are handled here and provide `next-intl` locale also
+// A static export refuses `dynamicParams: true`, so generateStaticParams lists every page
 // @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 // Enforces that this route is used as static rendering
 // Except whenever on the Development mode as we want instant-refresh when making changes
@@ -137,6 +127,6 @@ export const dynamic = 'force-static';
 // Ensures that this endpoint is invalidated and re-executed every X minutes
 // so that when new deployments happen, the data is refreshed
 // @see https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#revalidate
-export const revalidate = VERCEL_REVALIDATE;
+export const revalidate = 300;
 
 export default getPage;

@@ -33,3 +33,6 @@ cache
 # TypeScript
 tsconfig.tsbuildinfo
 flattened-dir/
+
+# Next.js regenerates this file on each build, and its content differs between dev and build
+next-env.d.ts
