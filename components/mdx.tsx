@@ -17,6 +17,9 @@ export const Mdx = async (props: {
   return (
     <MDXRemote
       options={{
+        // The sources are components/Examples and the readmes of JanuaryLabs/.github,
+        // and a readme passes a Mermaid chart as an expression. blockDangerousJS stays on.
+        blockJS: false,
         mdxOptions: {
           rehypePlugins: NEXT_REHYPE_PLUGINS({ hideCopyButton: true }) as never,
           remarkPlugins: NEXT_REMARK_PLUGINS,
