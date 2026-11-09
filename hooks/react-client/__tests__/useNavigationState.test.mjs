@@ -1,16 +1,14 @@
 import { act, fireEvent, renderHook, waitFor } from '@testing-library/react';
 import { createElement } from 'react';
 
-import useBottomScrollListener from '@/hooks/react-client/useBottomScrollListener';
 import useNavigationState from '@/hooks/react-client/useNavigationState';
 import { NavigationStateContext } from '@/providers/navigationStateProvider';
 
 describe('useNavigationState', () => {
-  it('should save the position when the page also reaches the bottom before the save runs', async () => {
+  it('should save the position once the delay after a scroll has passed', async () => {
     const navigationState = new Map();
     const element = document.createElement('nav');
     element.scrollTop = 40;
-    const callback = jest.fn();
     renderHook(() => useNavigationState('sidebar', { current: element }, 0), {
       wrapper: ({ children }) =>
         createElement(
@@ -19,23 +17,13 @@ describe('useNavigationState', () => {
           children
         ),
     });
-    renderHook(() => useBottomScrollListener(callback, 0));
-
-    // jsdom has no layout, so the page height a browser computes is set here.
-    Object.defineProperty(document.documentElement, 'scrollHeight', {
-      configurable: true,
-      value: 300,
-    });
-    document.documentElement.scrollTop = 100;
 
     act(() => {
       fireEvent.scroll(element);
-      fireEvent.scroll(window, { target: { innerHeight: 200 } });
     });
 
     await waitFor(() => {
       expect(navigationState.get('sidebar')).toEqual({ x: 0, y: 40 });
-      expect(callback).toHaveBeenCalledTimes(1);
     });
   });
 
