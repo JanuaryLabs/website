@@ -2,9 +2,9 @@
 
 import type { RefObject } from 'react';
 import { useContext, useEffect } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 
 import { NavigationStateContext } from '@/providers/navigationStateProvider';
-import { debounce } from '@/util/debounce';
 
 const useNavigationState = <T extends HTMLElement>(
   id: string,
@@ -12,6 +12,13 @@ const useNavigationState = <T extends HTMLElement>(
   debounceTime = 300
 ) => {
   const navigationState = useContext(NavigationStateContext);
+
+  const savePosition = useDebouncedCallback(
+    (savedId: string, position: { x: number; y: number }) => {
+      navigationState.set(savedId, position);
+    },
+    debounceTime
+  );
 
   useEffect(() => {
     const element = ref.current;
@@ -21,18 +28,21 @@ const useNavigationState = <T extends HTMLElement>(
         element.scroll({ top: saved.y, behavior: 'instant' });
       }
 
-      const handleScroll = debounce(() => {
-        navigationState.set(id, {
-          x: element.scrollLeft,
-          y: element.scrollTop,
-        });
-      }, debounceTime);
+      // The position is read here, at the scroll, because by the time a
+      // cleanup flush runs the element has left the page and reads 0.
+      const handleScroll = () =>
+        savePosition(id, { x: element.scrollLeft, y: element.scrollTop });
 
       element.addEventListener('scroll', handleScroll, { passive: true });
 
-      return () => element.removeEventListener('scroll', handleScroll);
+      return () => {
+        element.removeEventListener('scroll', handleScroll);
+        // flushOnExit covers unmount only; an id change must also save now,
+        // or a scroll under the new id replaces the pending save of the old.
+        savePosition.flush();
+      };
     }
-  }, [id, ref, debounceTime, navigationState]);
+  }, [id, ref, savePosition, navigationState]);
 };
 
 export default useNavigationState;
