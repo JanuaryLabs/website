@@ -9,9 +9,9 @@ const { categories, posts } = await generateBlogData();
 export const provideBlogCategories = cache(() => categories);
 
 export const provideBlogPosts = cache((category: string): BlogPostsRSC => {
-  const categoryPosts = posts
-    .filter(post => post.categories.includes(category))
-    .sort((a, b) => b.date.getTime() - a.date.getTime());
+  const categoryPosts = posts.filter(post =>
+    post.categories.includes(category)
+  );
 
   // Total amount of possible pages given the amount of blog posts
   const total = categoryPosts.length / BLOG_POSTS_PER_PAGE;

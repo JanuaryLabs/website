@@ -1,8 +1,7 @@
 'use strict';
 
-import { createReadStream } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 import { basename, extname, join } from 'node:path';
-import readline from 'node:readline';
 
 import graymatter from 'gray-matter';
 
@@ -10,11 +9,6 @@ import { getMarkdownFiles } from '../../next.helpers.mjs';
 
 // gets the current blog path based on local module path
 const blogPath = join(process.cwd(), 'pages/blog');
-
-/**
- * This contains the metadata of all available blog categories
- */
-const blogCategories = new Set(['all']);
 
 /**
  * This method parses the source (raw) Markdown content into Frontmatter
@@ -39,12 +33,6 @@ const getFrontMatter = (filename, source) => {
   // all = (all blog posts), publish year and the actual blog category
   const categories = [category, `year-${publishYear}`, 'all'];
 
-  // we add the year to the categories set
-  blogCategories.add(`year-${publishYear}`);
-
-  // we add the category to the categories set
-  blogCategories.add(category);
-
   // this is the url used for the blog post it based on the category and filename
   const slug = `/posts/${basename(filename, extname(filename))}`;
   return { title, author, username, date: new Date(date), categories, slug };
@@ -62,50 +50,24 @@ const generateBlogData = async () => {
     '**/index.md',
   ]);
 
-  return new Promise(resolve => {
-    const posts = [];
-    const rawFrontmatter = [];
+  const posts = await Promise.all(
+    filenames.map(async filename =>
+      getFrontMatter(filename, await readFile(join(blogPath, filename), 'utf8'))
+    )
+  );
 
-    filenames.forEach(filename => {
-      // We create a stream for reading a file instead of reading the files
-      const _stream = createReadStream(join(blogPath, filename));
+  // Each prerender worker runs this once and pages the result on its own, so every process
+  // must reach one order, or a post at a page boundary shows on two pages or on none. The
+  // code unit comparison keeps that order the same under every locale
+  posts.sort(
+    (a, b) => b.date.getTime() - a.date.getTime() || (a.slug < b.slug ? -1 : 1)
+  );
 
-      // We create a readline interface to read the file line-by-line
-      const _readLine = readline.createInterface({ input: _stream });
+  const categories = [
+    ...new Set(posts.flatMap(post => post.categories)),
+  ].sort();
 
-      // Creates an array of the metadata based on the filename
-      // This prevents concurrency issues since the for-loop is synchronous
-      // and these event listeners are not
-      rawFrontmatter[filename] = [0, ''];
-
-      // We read line by line
-      _readLine.on('line', line => {
-        rawFrontmatter[filename][1] += `${line}\n`;
-
-        // We observe the frontmatter separators
-        if (line === '---') {
-          rawFrontmatter[filename][0] += 1;
-        }
-
-        // Once we have two separators we close the readLine and the stream
-        if (rawFrontmatter[filename][0] === 2) {
-          _readLine.close();
-          _stream.close();
-        }
-      });
-
-      // Then we parse gray-matter on the frontmatter
-      // This allows us to only read the frontmatter part of each file
-      // and optimise the read-process as we have thousands of markdown files
-      _readLine.on('close', () => {
-        posts.push(getFrontMatter(filename, rawFrontmatter[filename][1]));
-
-        if (posts.length === filenames.length) {
-          resolve({ categories: [...blogCategories], posts });
-        }
-      });
-    });
-  });
+  return { categories, posts };
 };
 
 export default generateBlogData;
