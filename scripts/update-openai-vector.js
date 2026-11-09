@@ -1,4 +1,4 @@
-import glob from 'fast-glob';
+import { glob } from 'glob';
 import { createReadStream, statSync } from 'fs';
 import { OpenAI } from 'openai';
 import { join } from 'path';

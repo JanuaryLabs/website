@@ -6,7 +6,7 @@
 html,
 body {
   @apply size-full
-    [scrollbar-gutter:auto];
+    scrollbar-gutter-auto;
 }
 
 body {

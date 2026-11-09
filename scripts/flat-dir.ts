@@ -1,7 +1,7 @@
 import { mkdir, readFile, rm, writeFile } from 'fs/promises';
 import { basename, join } from 'path';
 
-import glob from 'fast-glob';
+import { glob } from 'glob';
 
 const src = join(process.cwd(), 'pages');
 const dist = join(process.cwd(), 'flattened-dir');

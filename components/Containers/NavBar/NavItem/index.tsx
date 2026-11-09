@@ -26,14 +26,14 @@ const NavItem: FC<PropsWithChildren<NavItemProps>> = ({
     href={href}
     className={classNames(
       styles[type],
-      `inline-flex items-center gap-2 rounded px-3 py-2 hover:bg-neutral-100 hover:dark:bg-neutral-900`,
+      `inline-flex items-center gap-2 rounded px-3 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-900`,
       className
     )}
     activeClassName={styles.active}
     allowSubPath={href.startsWith('/')}
     target={target}
   >
-    <span className={'text-sm font-medium leading-5'}>{children}</span>
+    <span className={'text-sm leading-5 font-medium'}>{children}</span>
 
     {((type === 'nav' && href.startsWith('http')) || target === '_blank') && (
       <ArrowUpRightIcon

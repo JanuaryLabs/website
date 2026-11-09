@@ -27,7 +27,7 @@ export default async function Page({
     <>
       <WithNavBar />
 
-      <main className="grid h-full grid-cols-1 !gap-0 px-8 md:grid-cols-9 md:px-6 lg:px-16">
+      <main className="grid h-full grid-cols-1 gap-0! px-8 md:grid-cols-9 md:px-6 lg:px-16">
         <header className="top-0 flex md:sticky md:col-start-1 md:col-end-5">
           <div className="mt-12">
             <h1 className="w-full items-center justify-between  text-5xl">
@@ -39,22 +39,22 @@ export default async function Page({
             <div className="mt-4 flex flex-col items-start gap-3.5">
               <Button
                 kind="special"
-                className="flex items-center gap-x-2 !px-2 !py-1 text-sm"
+                className="flex items-center gap-x-2 px-2! py-1! text-sm"
                 href={
                   process.env.NODE_ENV === 'development'
                     ? `http://localhost:1234?project=${project.id}`
                     : `https://${project.id}.beta.january.sh`
                 }
               >
-                <SiSwagger size={16} className="!size-4" />
+                <SiSwagger size={16} className="size-4!" />
                 API Docs
               </Button>
               <Button
                 kind="primary"
                 href={project.url}
-                className="flex items-center gap-x-2 !px-2 !py-1 text-sm"
+                className="flex items-center gap-x-2 px-2! py-1! text-sm"
               >
-                <SiGithub size={16} className="!size-4" />
+                <SiGithub size={16} className="size-4!" />
                 Source code
               </Button>
               <a href={`https://idx.google.com/import?url=${project.url}`}>
@@ -89,7 +89,7 @@ export default async function Page({
               {Object.entries(info).map(([key, value]) => (
                 <Fragment key={key}>
                   <li className="flex items-center justify-between ">
-                    <p className="text-sm font-semibold capitalize text-neutral-800 dark:text-neutral-600/80">
+                    <p className="text-sm font-semibold text-neutral-800 capitalize dark:text-neutral-600/80">
                       {key}
                     </p>
                     <p className="text-sm text-neutral-800 dark:text-neutral-600/80">
@@ -103,7 +103,7 @@ export default async function Page({
           </div>
           <div className="separator mx-8 hidden h-full md:block lg:mx-12"></div>
         </header>
-        <article className="mb-12 mt-12 flex flex-col gap-4 md:col-span-5">
+        <article className="mt-12 mb-12 flex flex-col gap-4 md:col-span-5">
           <Mdx source={project.readme} />
         </article>
       </main>

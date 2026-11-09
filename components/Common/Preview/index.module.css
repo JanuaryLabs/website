@@ -1,13 +1,15 @@
+@reference '../../../styles/index.css';
+
 .root {
-  @apply relative
+  @apply @container/preview
+    relative
     flex
     aspect-[1.90/1]
     items-center
-    rounded
+    rounded-[0.25rem]
     border
     border-neutral-900
-    bg-neutral-950
-    @container/preview;
+    bg-neutral-950;
 
   &::after {
     @apply absolute

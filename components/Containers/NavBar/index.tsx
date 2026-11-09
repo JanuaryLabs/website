@@ -36,10 +36,10 @@ const NavBar: FC<NavbarProps> = () => {
 
   return (
     <nav
-      className={`border-neutral-200 bg-white dark:border-neutral-900 dark:bg-neutral-950 lg:flex lg:h-16 lg:flex-row lg:items-center lg:gap-8 lg:border-b lg:px-8`}
+      className={`border-neutral-200 bg-white lg:flex lg:h-16 lg:flex-row lg:items-center lg:gap-8 lg:border-b lg:px-8 dark:border-neutral-900 dark:bg-neutral-950`}
     >
       <div
-        className={`flex h-16 shrink-0 items-center border-b border-neutral-200 px-4 dark:border-neutral-900 lg:flex lg:h-full lg:items-center lg:border-0 lg:px-0`}
+        className={`flex h-16 shrink-0 items-center border-b border-neutral-200 px-4 lg:flex lg:h-full lg:items-center lg:border-0 lg:px-0 dark:border-neutral-900`}
       >
         <Link className={'flex-1'} href="/" aria-label="Home">
           <WithNodejsLogo />
@@ -60,7 +60,7 @@ const NavBar: FC<NavbarProps> = () => {
         className={`hidden flex-1 flex-col peer-checked:flex  lg:flex  lg:flex-row lg:items-center`}
       >
         <div
-          className={`flex flex-col gap-1 border-b border-neutral-200 p-4 dark:border-neutral-900 lg:flex-1 lg:flex-row lg:border-0 lg:p-0`}
+          className={`flex flex-col gap-1 border-b border-neutral-200 p-4 lg:flex-1 lg:flex-row lg:border-0 lg:p-0 dark:border-neutral-900`}
         >
           {navigationItems.map(([key, item]) =>
             item.items?.length ? (
@@ -74,7 +74,7 @@ const NavBar: FC<NavbarProps> = () => {
         </div>
 
         <div
-          className={`flex items-center gap-2 border-b border-neutral-200 p-4 dark:border-neutral-900 lg:border-0 lg:p-0`}
+          className={`flex items-center gap-2 border-b border-neutral-200 p-4 lg:border-0 lg:p-0 dark:border-neutral-900`}
         >
           {/* <SearchButton /> */}
 
@@ -83,7 +83,7 @@ const NavBar: FC<NavbarProps> = () => {
 
 
     <Link
-   className={'size-9 rounded-md p-2 hover:bg-neutral-100 hover:dark:bg-neutral-900'}
+   className={'size-9 rounded-md p-2 hover:bg-neutral-100 dark:hover:bg-neutral-900'}
    href="https://github.com/januarylabs/node"
    aria-label="Node.js Github"
     >
@@ -107,12 +107,12 @@ const ListItem = forwardRef<
         <a
           ref={ref}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            'block space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
             className
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none">{title}</div>
+          <div className="text-sm leading-none font-medium">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>

@@ -138,16 +138,16 @@ export default function Chat(props: ChatProps) {
   }, [generationStatus]);
 
   return (
-    <div className="fixed bottom-10 right-0 z-10 mt-4 flex w-full justify-center sm:mr-4 sm:max-w-md sm:justify-end">
+    <div className="fixed right-0 bottom-10 z-10 mt-4 flex w-full justify-center sm:mr-4 sm:max-w-md sm:justify-end">
       <div
         style={{
           boxShadow: '0px 9px 10px rgba(255, 149, 5, 0.1)',
         }}
-        className="prose prose-code:overflow-auto prose-code:whitespace-pre-wrap flex max-h-[700px] w-11/12 flex-col justify-between rounded border border-[#e5e7eb] bg-[#f8f8f8] p-2 dark:bg-neutral-950 sm:w-full sm:max-w-md"
+        className="prose prose-code:overflow-auto prose-code:whitespace-pre-wrap flex max-h-[700px] w-11/12 flex-col justify-between rounded border border-[#e5e7eb] bg-[#f8f8f8] p-2 sm:w-full sm:max-w-md dark:bg-neutral-950"
       >
         {/* Heading */}
         <div className="flex items-start justify-between px-2">
-          <h2 className="mb-4 mt-0 text-lg font-semibold tracking-tight">
+          <h2 className="mt-0 mb-4 text-lg font-semibold tracking-tight">
             Blog Assistant
             <span className="block text-sm text-[#6b7280]">
               Powered by January
@@ -192,7 +192,7 @@ export default function Chat(props: ChatProps) {
         </div>
         <Transition
           as="div"
-          className="chat-content scrollbar-thin mb-1 overflow-y-auto px-2"
+          className="chat-content mb-1 scrollbar-thin overflow-y-auto px-2"
           show={isShowing}
           appear={true}
           enter="transition-[max-height] duration-250"
@@ -213,7 +213,7 @@ export default function Chat(props: ChatProps) {
           })}
         </Transition>
         {/* Input Box */}
-        <div className="sticky bottom-0 flex items-center rounded border border-neutral-400 py-2 pl-2.5 pr-2">
+        <div className="sticky bottom-0 flex items-center rounded border border-neutral-400 py-2 pr-2 pl-2.5">
           <form
             className="flex w-full items-center justify-center space-x-1"
             onSubmit={e => {
@@ -221,7 +221,7 @@ export default function Chat(props: ChatProps) {
             }}
           >
             <input
-              className="flex w-full border-0 bg-transparent text-sm font-medium  placeholder-[#6b7280] focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+              className="flex w-full border-0 bg-transparent text-sm font-medium  placeholder-[#6b7280] focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="Ask me about this blog..."
               type="search"
               name="message"

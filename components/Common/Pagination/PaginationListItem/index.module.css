@@ -1,3 +1,5 @@
+@reference '../../../../styles/index.css';
+
 .listItem,
 .listItem:link,
 .listItem:active {
@@ -5,13 +7,13 @@
     size-10
     items-center
     justify-center
-    rounded
+    rounded-[0.25rem]
     px-3
     py-2.5
     text-neutral-800
+    dark:text-neutral-200
     aria-current:bg-green-600
-    aria-current:text-white
-    dark:text-neutral-200;
+    aria-current:text-white;
 
   &:hover {
     @apply bg-neutral-100

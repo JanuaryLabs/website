@@ -5,9 +5,9 @@ import styles from './index.module.css';
 
 export function TryProject(props: { children: React.ReactNode; gist: string }) {
   return (
-    <div className={cn(styles.root, '!rounded-t-none !border-t-0')}>
+    <div className={cn(styles.root, 'rounded-t-none! border-t-0!')}>
       <div
-        className={cn(styles.footer, '!grid gap-x-4 !border-t-0')}
+        className={cn(styles.footer, 'grid! gap-x-4 border-t-0!')}
         style={{
           gridTemplateColumns: 'minmax(0, 1fr) max-content',
           alignItems: 'normal',

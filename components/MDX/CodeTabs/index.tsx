@@ -51,7 +51,7 @@ const NestedTabs: FC<{ examples: Array<NestedExampleTab> }> = props => {
   return (
     <>
       <CodeTabs
-        tabsListClassName="!rounded-t-none border-b"
+        tabsListClassName="rounded-t-none! border-b"
         tabs={tabs}
         defaultValue={props.examples[0].id}
         {...props}

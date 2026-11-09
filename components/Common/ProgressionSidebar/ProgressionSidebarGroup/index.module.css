@@ -1,3 +1,5 @@
+@reference '../../../../styles/index.css';
+
 .group {
   @apply flex
     flex-col
@@ -16,14 +18,19 @@
 
     &::after {
       @apply absolute
-        left-[0.45rem]
         top-0
+        left-[0.45rem]
         z-10
         h-full
         w-px
         bg-neutral-200
-        content-['']
-        dark:bg-neutral-800;
+        content-[''];
+    }
+
+    @variant dark {
+      &::after {
+        @apply bg-neutral-800;
+      }
     }
 
     a {
@@ -34,19 +41,29 @@
           h-20
           w-4
           bg-white
-          content-['']
-          dark:bg-neutral-950;
+          content-[''];
+      }
+
+      @variant dark {
+        &:first-child::before {
+          @apply bg-neutral-950;
+        }
       }
 
       &:last-child::after {
         @apply absolute
-          left-0
           top-[calc(50%+0.25rem)]
+          left-0
           h-20
           w-4
           bg-white
-          content-['']
-          dark:bg-neutral-950;
+          content-[''];
+      }
+
+      @variant dark {
+        &:last-child::after {
+          @apply bg-neutral-950;
+        }
       }
     }
   }

@@ -1,3 +1,5 @@
+@reference '../styles/index.css';
+
 .baseLayout {
   @apply grid
     size-full
@@ -12,14 +14,14 @@
     max-w-8xl
     overflow-auto
     sm:grid
-    sm:grid-cols-[theme(spacing.52)_1fr]
+    sm:grid-cols-[--spacing(52)_1fr]
     sm:grid-rows-[1fr]
     sm:overflow-hidden
     sm:[grid-template-areas:'sidebar_main''sidebar_footer']
-    md:grid-cols-[theme(spacing.64)_1fr]
-    lg:grid-cols-[theme(spacing.52)_1fr_theme(spacing.52)]
+    md:grid-cols-[--spacing(64)_1fr]
+    lg:grid-cols-[--spacing(52)_1fr_--spacing(52)]
     lg:[grid-template-areas:'sidebar_main_metabar''sidebar_footer_metabar']
-    xl:grid-cols-[theme(spacing.80)_1fr_theme(spacing.80)];
+    xl:grid-cols-[--spacing(80)_1fr_--spacing(80)];
 
   > *:nth-child(1) {
     @apply [grid-area:sidebar];
@@ -31,16 +33,16 @@
       sm:max-lg:block;
 
     > *:first-child {
-      @apply overflow-y-auto
-        overflow-x-hidden
+      @apply overflow-x-hidden
+        overflow-y-auto
         p-4
         [grid-area:main]
         motion-safe:scroll-smooth
         sm:bg-gradient-subtle
         sm:bg-fixed
         sm:p-12
-        sm:dark:bg-gradient-subtle-dark
-        xl:px-18;
+        xl:px-18
+        sm:dark:bg-gradient-subtle-dark;
     }
 
     > *:last-child {
@@ -49,8 +51,8 @@
         [grid-area:metabar]
         sm:mt-0
         lg:max-w-xs
-        lg:border-l
-        lg:border-t-0;
+        lg:border-t-0
+        lg:border-l;
     }
   }
 
@@ -119,8 +121,8 @@
           @apply text-center
             text-sm
             text-neutral-800
-            dark:text-neutral-400
-            max-xs:text-xs;
+            max-xs:text-xs
+            dark:text-neutral-400;
 
           sup {
             @apply cursor-help;
@@ -131,8 +133,8 @@
 
     &:nth-of-type(2) {
       @apply flex
-          min-w-0
           max-w-full
+          min-w-0
           flex-[1_1]
           flex-col
           items-center
@@ -155,8 +157,8 @@
     w-full
     justify-center
     bg-gradient-subtle
-    dark:bg-gradient-subtle-dark
     max-xs:bg-none
+    dark:bg-gradient-subtle-dark
     max-xs:dark:bg-none;
 
   main {
@@ -177,8 +179,8 @@
     grid-rows-[1fr]
     max-xs:m-0
     max-xs:block
-    sm:grid-cols-[1fr_theme(spacing.52)]
-    xl:grid-cols-[1fr_theme(spacing.80)];
+    sm:grid-cols-[1fr_--spacing(52)]
+    xl:grid-cols-[1fr_--spacing(80)];
 
   > *:nth-child(1) {
     @apply flex
@@ -189,14 +191,14 @@
       bg-gradient-subtle
       px-4
       py-14
-      dark:border-l-neutral-900
-      dark:bg-gradient-subtle-dark
       max-xs:border-l-0
       max-xs:bg-none
       max-xs:pb-4
-      max-xs:dark:bg-none
       md:px-14
-      lg:px-28;
+      lg:px-28
+      dark:border-l-neutral-900
+      dark:bg-gradient-subtle-dark
+      max-xs:dark:bg-none;
 
     main {
       @apply grid
@@ -213,8 +215,8 @@
       border-t
       xs:mt-0
       xs:max-w-xs
-      xs:border-l
-      xs:border-t-0;
+      xs:border-t-0
+      xs:border-l;
   }
 }
 
@@ -228,8 +230,8 @@
     }
 
     > div:nth-of-type(1) {
-      @apply mb-4
-        mt-2;
+      @apply mt-2
+        mb-4;
     }
   }
 }

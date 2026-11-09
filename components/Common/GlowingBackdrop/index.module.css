@@ -1,7 +1,9 @@
+@reference '../../../styles/index.css';
+
 .glowingBackdrop {
   @apply absolute
-    left-0
     top-0
+    left-0
     -z-10
     size-full
     opacity-50
@@ -16,8 +18,13 @@
       rounded-full
       bg-green-300
       blur-[120px]
-      content-['']
-      dark:bg-green-700;
+      content-[''];
+  }
+
+  @variant dark {
+    &::after {
+      @apply bg-green-700;
+    }
   }
 
   svg {

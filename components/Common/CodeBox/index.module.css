@@ -1,6 +1,8 @@
+@reference '../../../styles/index.css';
+
 .root {
   @apply w-full
-    rounded
+    rounded-[0.25rem]
     border
     border-neutral-900
     bg-neutral-950;
@@ -16,8 +18,8 @@
         py-4
         font-mono
         text-sm
-        font-regular
         leading-snug
+        font-regular
         text-neutral-400
         [counter-reset:line];
 
@@ -33,8 +35,8 @@
 
         &:not(:empty:last-child)::after {
           @apply absolute
-            left-0
             top-0
+            left-0
             mr-4
             w-4.5
             text-right

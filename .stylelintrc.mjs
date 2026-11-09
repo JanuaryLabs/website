@@ -2,6 +2,10 @@
 const CUSTOM_AT_RULES = [
   // Tailwind-specific at-rules
   'apply',
+  'custom-variant',
+  'reference',
+  'theme',
+  'variant',
   'layer',
   'responsive',
   'screen',
@@ -44,6 +48,17 @@ const config = {
     'import-notation': 'string',
     'rule-empty-line-before': null,
   },
+  // The @theme block of Tailwind holds its own names, such as --text-*, and its --theme() function
+  overrides: [
+    {
+      files: ['styles/index.css'],
+      rules: {
+        'custom-property-empty-line-before': null,
+        'custom-property-no-missing-var-function': null,
+        'custom-property-pattern': null,
+      },
+    },
+  ],
 };
 
 export default config;

@@ -1,3 +1,5 @@
+@reference '../../../../styles/index.css';
+
 .item {
   @apply flex
     items-center
@@ -6,8 +8,8 @@
     font-medium;
 
   a {
-    @apply flex-shrink
-      flex-grow;
+    @apply shrink
+      grow;
   }
 
   &,
@@ -23,8 +25,8 @@
 
   .separator {
     @apply size-4
-      flex-shrink-0
-      flex-grow
+      shrink-0
+      grow
       text-neutral-600
       dark:text-neutral-400;
   }

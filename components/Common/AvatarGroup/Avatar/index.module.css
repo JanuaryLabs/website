@@ -1,3 +1,5 @@
+@reference '../../../../styles/index.css';
+
 .avatar {
   @apply flex
     size-8
@@ -18,6 +20,6 @@
 .avatarRoot {
   @apply -ml-2
     size-8
-    flex-shrink-0
+    shrink-0
     first:ml-0;
 }

@@ -3,10 +3,10 @@ h1.special {
     bg-clip-text
     text-4xl
     leading-10
-    -tracking-[0.045rem]
+    tracking-[-0.045rem]
     [-webkit-text-fill-color:transparent]
-    dark:bg-gradient-subtle-white
     md:text-5xl
-    md:leading-[3rem]
-    md:-tracking-[0.06rem];
+    md:leading-12
+    md:tracking-[-0.06rem]
+    dark:bg-gradient-subtle-white;
 }

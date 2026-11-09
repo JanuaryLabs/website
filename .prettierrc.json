@@ -9,5 +9,6 @@
   "bracketSameLine": false,
   "arrowParens": "avoid",
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindPreserveWhitespace": true
+  "tailwindPreserveWhitespace": true,
+  "tailwindStylesheet": "./styles/index.css"
 }

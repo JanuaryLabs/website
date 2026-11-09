@@ -75,12 +75,12 @@ export default function QuickActions(props: {
               as={Fragment}
               enter="transition will-change-transform"
               enterFrom="transform opacity-0 scale-95 bg-transparent"
-              enterTo="transform opacity-100 scale-100 bg-[var(--chat-bg)]"
+              enterTo="transform opacity-100 scale-100 bg-(--chat-bg)"
               leave="transition will-change-transform duration-75"
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="divide-gray-100 ring-black/5 w-40 origin-top-right divide-y rounded-md shadow-lg ring-1 focus:outline-none">
+              <Menu.Items className="divide-gray-100 ring-black/5 w-40 origin-top-right divide-y rounded-md shadow-lg ring-1 focus:outline-hidden">
                 <div className="px-1 py-1 ">
                   <Menu.Item>
                     {({ active }) => (

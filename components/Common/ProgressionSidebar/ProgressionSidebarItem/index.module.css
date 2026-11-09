@@ -1,3 +1,5 @@
+@reference '../../../../styles/index.css';
+
 a.item {
   @apply relative
     z-20
@@ -17,7 +19,7 @@ a.item {
   }
 
   svg {
-    @apply flex-shrink-0
+    @apply shrink-0
       fill-neutral-200
       stroke-white
       stroke-[4]

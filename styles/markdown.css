@@ -77,8 +77,8 @@ main {
   a,
   .anchor {
     @apply text-green-600
-      dark:text-green-400
-      max-xs:font-semibold;
+      max-xs:font-semibold
+      dark:text-green-400;
 
     &:hover {
       @apply text-green-900
@@ -97,14 +97,14 @@ main {
 
   ul {
     @apply list-disc
-      pl-9
       pr-5
+      pl-9
       leading-6
       text-neutral-900
       dark:text-white;
 
     li div:has(> pre) {
-      @apply !my-1;
+      @apply my-1!;
     }
   }
 
@@ -116,7 +116,7 @@ main {
       dark:text-white;
 
     li div:has(> pre) {
-      @apply !my-1;
+      @apply my-1!;
     }
   }
 
@@ -135,16 +135,16 @@ main {
     th,
     td {
       @apply border
-        border-r-0
         border-t-0
+        border-r-0
         border-neutral-200
         px-4
         py-2
         text-neutral-900
-        dark:border-neutral-800
-        dark:text-white
         max-xs:block
-        max-xs:border-l-0;
+        max-xs:border-l-0
+        dark:border-neutral-800
+        dark:text-white;
 
       > a {
         @apply pr-2;

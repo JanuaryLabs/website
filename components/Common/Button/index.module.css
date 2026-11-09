@@ -1,3 +1,5 @@
+@reference '../../../styles/index.css';
+
 .button {
   @apply relative
     inline-flex
@@ -17,7 +19,7 @@
   }
 
   &.neutral {
-    @apply rounded
+    @apply rounded-[0.25rem]
       bg-neutral-900
       text-white
       dark:text-neutral-200;
@@ -37,12 +39,12 @@
   }
 
   &.primary {
-    @apply rounded
+    @apply rounded-[0.25rem]
       border
       border-green-600
       bg-green-600
       text-white
-      shadow-sm;
+      shadow-[0_1px_2px_0_rgb(0_0_0/0.05)];
 
     &:hover:not([aria-disabled='true']) {
       @apply border-green-700
@@ -92,13 +94,13 @@
       border-green-600/30
       bg-green-600/10
       text-white
-      shadow-sm;
+      shadow-[0_1px_2px_0_rgb(0_0_0/0.05)];
 
     &::before {
       @apply absolute
-        left-0
-        right-0
         top-0
+        right-0
+        left-0
         -z-10
         mx-auto
         h-full
@@ -111,12 +113,12 @@
     &::after {
       @apply absolute
         -top-px
-        left-0
         right-0
+        left-0
         mx-auto
         h-px
         w-2/5
-        bg-gradient-to-r
+        bg-linear-to-r
         from-green-600/0
         via-green-600
         to-green-600/0

@@ -1,7 +1,7 @@
 import { writeFile } from 'fs/promises';
 import { join } from 'path';
 
-import glob from 'fast-glob';
+import { glob } from 'glob';
 import { readFileSync } from 'fs';
 
 const src = join(process.cwd(), 'pages');
