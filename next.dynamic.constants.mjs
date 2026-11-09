@@ -70,13 +70,6 @@ export const PAGE_METADATA = {
     title: siteConfig.title,
     statusBarStyle: 'black-translucent',
   },
-  alternates: {
-    canonical: '',
-    languages: { 'x-default': '' },
-    types: {
-      'application/rss+xml': `${BASE_URL}${BASE_PATH}/feed/posts.xml`,
-    },
-  },
   openGraph: {
     images: siteConfig.twitter.img,
     type: 'website',

@@ -185,42 +185,28 @@ const getDynamicRouter = async () => {
    * @returns {Promise<import('next').Metadata>}
    */
   const _getPageMetadata = async (path = '') => {
-    const pageMetadata = { ...PAGE_METADATA };
-
     const { source = '' } = await getMarkdownFile(path);
 
     const { data } = matter(source);
 
-    pageMetadata.title = data.title
+    const title = data.title
       ? `${siteConfig.title} — ${data.title}`
       : siteConfig.title;
 
-    pageMetadata.twitter.title = pageMetadata.title;
+    const canonical = `${baseUrlAndPath}/${path}`;
 
-    const getUrlForPathname = (l, p) =>
-      `${baseUrlAndPath}/${l}${p ? `/${p}` : ''}`;
-
-    pageMetadata.alternates.canonical = getUrlForPathname(path);
-
-    pageMetadata.alternates.languages['x-default'] = getUrlForPathname(path);
-
-    const blogMatch = path.match(/^blog\/(release|vulnerability)(\/|$)/);
-    if (blogMatch) {
-      const category = blogMatch[1];
-      const currentFile = siteConfig.rssFeeds.find(
-        item => item.category === category
-      )?.file;
-      // Use getUrlForPathname to dynamically construct the XML path for blog/release and blog/vulnerability
-      pageMetadata.alternates.types['application/rss+xml'] = getUrlForPathname(
-        `feed/${currentFile}`
-      );
-    } else {
-      // Use getUrlForPathname for the default blog XML feed path
-      pageMetadata.alternates.types['application/rss+xml'] =
-        getUrlForPathname('feed/posts.xml');
-    }
-
-    return pageMetadata;
+    // Next.js 16 renders up to 8 pages at once in one process and reads this object after
+    // they all ran, so every nested value this page changes must be its own object
+    return {
+      ...PAGE_METADATA,
+      title,
+      twitter: { ...PAGE_METADATA.twitter, title },
+      alternates: {
+        canonical,
+        languages: { 'x-default': canonical },
+        types: { 'application/rss+xml': `${baseUrlAndPath}/feed/posts.xml` },
+      },
+    };
   };
 
   // Creates a Cached Version of the Page Metadata Context
