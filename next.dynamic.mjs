@@ -180,17 +180,19 @@ const getDynamicRouter = async () => {
    * This method generates the Next.js App Router Metadata
    * that can be used for each page to provide metadata
    *
-   * @param {string} locale
    * @param {string} path
+   * @param {string} [pageTitle] the title of a page with no Markdown file to read one from
    * @returns {Promise<import('next').Metadata>}
    */
-  const _getPageMetadata = async (path = '') => {
+  const _getPageMetadata = async (path = '', pageTitle) => {
     const { source = '' } = await getMarkdownFile(path);
 
     const { data } = matter(source);
 
-    const title = data.title
-      ? `${siteConfig.title} — ${data.title}`
+    const heading = pageTitle ?? data.title;
+
+    const title = heading
+      ? `${siteConfig.title} — ${heading}`
       : siteConfig.title;
 
     const canonical = `${baseUrlAndPath}/${path}`;
@@ -210,8 +212,8 @@ const getDynamicRouter = async () => {
   };
 
   // Creates a Cached Version of the Page Metadata Context
-  const getPageMetadata = cache(async (locale, path) => {
-    return await _getPageMetadata(locale, path);
+  const getPageMetadata = cache(async (path, pageTitle) => {
+    return await _getPageMetadata(path, pageTitle);
   });
 
   return {

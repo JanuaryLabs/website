@@ -3,6 +3,7 @@ import Button from '@/components/Common/Button';
 import { Mdx } from '@/components/mdx';
 import WithFooter from '@/components/withFooter';
 import WithNavBar from '@/components/withNavBar';
+import { dynamicRouter } from '@/next.dynamic.mjs';
 import { Fragment } from 'react';
 import { SiGithub, SiSwagger } from 'react-icons/si';
 
@@ -10,11 +11,16 @@ export async function generateStaticParams() {
   return getProjects();
 }
 
-export default async function Page(props: {
-  params: Promise<{
-    id: string;
-  }>;
-}) {
+type ProjectParams = { params: Promise<{ id: string }> };
+
+export async function generateMetadata(props: ProjectParams) {
+  const { id } = await props.params;
+  const project = await getProject(id);
+
+  return dynamicRouter.getPageMetadata(`explore/${id}`, project.config.title);
+}
+
+export default async function Page(props: ProjectParams) {
   const params = await props.params;
   const project = await getProject(params.id);
   const info = {

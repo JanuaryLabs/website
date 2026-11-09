@@ -31,6 +31,20 @@ describe('page metadata', () => {
     ).toEqual(pages.map(page => [`/${page.pathname}`, `/${page.pathname}`]));
   }, 60_000);
 
+  it('gives the explore pages their own canonical URL and title', async () => {
+    const pages = await metadataOfEveryRoute();
+
+    expect(
+      pages
+        .filter(page => page.pathname.startsWith('explore'))
+        .map(page => [pathnameOf(page.canonical), page.title])
+    ).toEqual([
+      ['/explore', 'January — Templates and starters'],
+      ['/explore/roadmap', 'January — Roadmap'],
+      ['/explore/google-tasks', 'January — Google tasks'],
+    ]);
+  }, 60_000);
+
   it('gives each route its own Twitter title when routes render at once', async () => {
     const pages = await metadataOfEveryRoute();
 

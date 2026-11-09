@@ -1,6 +1,7 @@
 import WithFooter from '@/components/withFooter';
 import WithNavBar from '@/components/withNavBar';
 import styles from '@/layouts/layouts.module.css';
+import { dynamicRouter } from '@/next.dynamic.mjs';
 
 import Button from '@/components/Common/Button';
 
@@ -12,6 +13,9 @@ import { HiCheckBadge } from 'react-icons/hi2';
 import { SiGithub, SiHono } from 'react-icons/si';
 import type { Project } from './utils';
 import { getProject, getProjects } from './utils';
+
+export const generateMetadata = () =>
+  dynamicRouter.getPageMetadata('explore', 'Templates and starters');
 
 export default async function Page() {
   const projects: Array<Project> = await Promise.all(
