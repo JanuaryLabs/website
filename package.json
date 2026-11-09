@@ -151,6 +151,8 @@
     "core-js": false,
     "core-js-pure": false,
     "protobufjs": false,
-    "@vercel/speed-insights": false
+    "@vercel/speed-insights": false,
+    "@firebase/util": false,
+    "@parcel/watcher": false
   }
 }
