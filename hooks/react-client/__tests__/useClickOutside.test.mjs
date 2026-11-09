@@ -19,21 +19,29 @@ describe('useClickOutside', () => {
 
   it('should not call the callback function when clicked inside the element', () => {
     const fn = jest.fn();
-    const { rerender } = renderHook(() =>
-      useClickOutside({ current: null }, fn)
-    );
+    const element = document.createElement('div');
+    const child = document.createElement('button');
+    element.appendChild(child);
+    document.body.appendChild(element);
+    const ref = { current: element };
 
-    const mockEvent = new MouseEvent('click', { bubbles: true });
-    const mockElement = document.createElement('div');
-    const mockChildElement = document.createElement('button');
-    mockElement.appendChild(mockChildElement);
+    try {
+      renderHook(() => useClickOutside(ref, fn));
 
-    rerender({ current: mockElement }, fn);
+      act(() => {
+        child.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      });
 
-    act(() => {
-      mockChildElement.dispatchEvent(mockEvent);
-    });
+      expect(fn).not.toHaveBeenCalled();
 
-    expect(fn).not.toHaveBeenCalled();
+      // The listener must still answer, or the assertion above proves nothing.
+      act(() => {
+        document.body.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      });
+
+      expect(fn).toHaveBeenCalledTimes(1);
+    } finally {
+      element.remove();
+    }
   });
 });
