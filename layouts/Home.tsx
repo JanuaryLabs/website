@@ -29,7 +29,6 @@ const examplesTabs = [
         content: (
           <>
             <Mdx
-              hideCopyButton={true}
               source={httpTrigger}
               components={{
                 h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -45,7 +44,6 @@ const examplesTabs = [
         content: (
           <>
             <Mdx
-              hideCopyButton={true}
               source={sseTrigger}
               components={{
                 h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -61,7 +59,6 @@ const examplesTabs = [
         content: (
           <>
             <Mdx
-              hideCopyButton={true}
               source={webosocketTrigger}
               components={{
                 h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -76,7 +73,6 @@ const examplesTabs = [
         title: 'Process Job',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={queueTrigger}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -90,7 +86,6 @@ const examplesTabs = [
         title: 'Schedule Trigger',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={scheduleTrigger}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -104,7 +99,6 @@ const examplesTabs = [
         title: 'Github Trigger',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={githubTrigger}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -124,7 +118,6 @@ const examplesTabs = [
         title: 'Authenticate User',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={authenticatedUser}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -138,7 +131,6 @@ const examplesTabs = [
         title: 'Limit to Country',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={limitToCountry}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -162,7 +154,6 @@ const examplesTabs = [
         title: 'Upload File',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={uploadFile}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -183,7 +174,6 @@ const examplesTabs = [
         title: 'Send Email',
         content: (
           <Mdx
-            hideCopyButton={true}
             source={sendEmail}
             components={{
               h1: ({ children }) => <h1 className="text-3xl">{children}</h1>,
@@ -208,16 +198,7 @@ const HomeLayout: FC<PropsWithChildren> = async ({ children }) => {
 
       <main className={styles.homeLayout}>
         {children}
-        <section
-          style={
-            {
-              '--ec-frm-frameBoxShdCssVal': '0 0 0 0',
-              '--ec-brdCol': 'hsl(var(--border))',
-              '--ec-brdRad': '0.0rem',
-              '--ec-frm-edBg': 'rgb(13 18 28)', //bg-natural-900
-            } as React.CSSProperties
-          }
-        >
+        <section>
           <MDXCodeTabs examples={examplesTabs} />
         </section>
       </main>

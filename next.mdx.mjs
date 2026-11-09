@@ -14,7 +14,7 @@ import readingTime from 'remark-reading-time';
  *
  * @type {Array<import('unified').Plugin>}
  */
-export function NEXT_REHYPE_PLUGINS(props = { hideCopyButton: false }) {
+export function NEXT_REHYPE_PLUGINS() {
   return [
     // Allows for raw HTML to be used in MDX
     [rehypeRaw, { passThrough: nodeTypes }],

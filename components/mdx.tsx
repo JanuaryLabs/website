@@ -11,7 +11,6 @@ const MDXRemote = dynamic(() =>
 
 export const Mdx = async (props: {
   source: string;
-  hideCopyButton?: boolean;
   components?: MDXRemoteProps['components'];
 }) => {
   return (
@@ -21,7 +20,7 @@ export const Mdx = async (props: {
         // and a readme passes a Mermaid chart as an expression. blockDangerousJS stays on.
         blockJS: false,
         mdxOptions: {
-          rehypePlugins: NEXT_REHYPE_PLUGINS({ hideCopyButton: true }) as never,
+          rehypePlugins: NEXT_REHYPE_PLUGINS() as never,
           remarkPlugins: NEXT_REMARK_PLUGINS,
         },
       }}
