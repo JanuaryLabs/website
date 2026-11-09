@@ -1,5 +1,5 @@
 import { CodeBracketIcon } from '@heroicons/react/24/outline';
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import AvatarGroup from '@/components/Common/AvatarGroup';
 import MetaBar from '@/components/Containers/MetaBar';

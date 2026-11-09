@@ -38,6 +38,8 @@ async function uploadToAssistant(assistantId) {
   });
 }
 
-export default async () => {
+const updateVectorStore = async () => {
   await uploadToAssistant(DOCS_VECTORSTORE_ID);
 };
+
+export default updateVectorStore;

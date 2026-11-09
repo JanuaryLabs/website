@@ -18,7 +18,8 @@ body {
 }
 
 :root {
-  --font-inter: Inter, sans-serif;
+  --font-inter: inter, sans-serif;
+
   font-family: var(--font-inter);
   font-feature-settings:
     'liga' 1,
@@ -27,7 +28,7 @@ body {
 
 @supports (font-variation-settings: normal) {
   :root {
-    --font-inter: InterVariable, sans-serif;
+    --font-inter: intervariable, sans-serif;
   }
 }
 
@@ -40,19 +41,20 @@ body {
   h6 {
     @apply mt-2 font-merriweather-sans;
   }
-  h3 {
-  }
   p {
     @apply my-2 text-base text-neutral-800;
-    word-break: break-word;
+
+    overflow-wrap: anywhere;
     text-wrap: pretty;
   }
 }
 
 pre.shiki {
   @apply min-h-fit overflow-auto;
+
   background-color: rgb(13 18 28) !important;
   border: 1px solid rgb(44 52 55);
+
   @apply p-3 text-sm;
   code {
     background-color: rgb(13 18 28) !important;

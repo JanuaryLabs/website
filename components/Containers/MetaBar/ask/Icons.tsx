@@ -1,7 +1,7 @@
 export const Icons = {
   MaximizeIcon: () => (
     <svg
-      className="h-3.5 w-3.5 text-gray-800 dark:text-white"
+      className="text-gray-800 h-3.5 w-3.5 dark:text-white"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -18,7 +18,7 @@ export const Icons = {
   ),
   MinimizeIcon: () => (
     <svg
-      className="h-3.5 w-3.5 text-gray-800 dark:text-white"
+      className="text-gray-800 h-3.5 w-3.5 dark:text-white"
       aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -35,7 +35,7 @@ export const Icons = {
   ),
   UserSettingsIcon: () => (
     <svg
-      className="h-3.5 w-3.5 text-gray-800 dark:text-white"
+      className="text-gray-800 h-3.5 w-3.5 dark:text-white"
       aria-hidden="true"
       viewBox="0 0 20 18"
       fill="none"
@@ -64,7 +64,7 @@ export const Icons = {
   HighlightIcon: (props: { enabled: boolean }) =>
     props.enabled ? (
       <svg
-        className="h-3.5 w-3.5 text-gray-800 dark:text-white"
+        className="text-gray-800 h-3.5 w-3.5 dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
@@ -74,7 +74,7 @@ export const Icons = {
       </svg>
     ) : (
       <svg
-        className="h-3.5 w-3.5 text-gray-800 dark:text-white"
+        className="text-gray-800 h-3.5 w-3.5 dark:text-white"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

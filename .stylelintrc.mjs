@@ -19,9 +19,9 @@ const ONLY_ALLOW_CAMEL_CASE_SELECTORS = [
   { message: s => `Expected '${s}' to be in camelCase` },
 ];
 
-export default {
+const config = {
   extends: ['stylelint-config-standard'],
-  plugins: ['stylelint-order', 'stylelint-selector-bem-pattern'],
+  plugins: ['stylelint-order'],
   rules: {
     // Enforces Element Class Names to be camelCase
     'selector-class-pattern': ONLY_ALLOW_CAMEL_CASE_SELECTORS,
@@ -29,6 +29,7 @@ export default {
     'selector-id-pattern': ONLY_ALLOW_CAMEL_CASE_SELECTORS,
     // Allow Tailwind-based CSS Rules
     'at-rule-no-unknown': [true, { ignoreAtRules: CUSTOM_AT_RULES }],
+    'at-rule-prelude-no-invalid': [true, { ignoreAtRules: CUSTOM_AT_RULES }],
     // Allow the Global CSS Selector
     'selector-pseudo-class-no-unknown': [
       true,
@@ -44,3 +45,5 @@ export default {
     'rule-empty-line-before': null,
   },
 };
+
+export default config;

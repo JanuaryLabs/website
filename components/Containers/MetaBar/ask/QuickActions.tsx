@@ -4,7 +4,9 @@ import { useDebounce } from 'react-use';
 import { Icons } from './Icons';
 import { splitWords } from './split-words';
 
-export default function (props: { onExplain: (input: string) => void }) {
+export default function QuickActions(props: {
+  onExplain: (input: string) => void;
+}) {
   const [highlightEnabled, enableHighlighting] = useState(false);
   const [highlightedText, highlightText] = useState('');
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -48,7 +50,7 @@ export default function (props: { onExplain: (input: string) => void }) {
 
   return (
     <Menu as="div" className="inline-block text-left">
-      {({ open, close }) => (
+      {() => (
         <>
           <Menu.Button className={'hidden'} ref={buttonRef}></Menu.Button>
           <button
@@ -175,7 +177,7 @@ export default function (props: { onExplain: (input: string) => void }) {
   );
 }
 
-function ExplainIcon(props: Record<string, any>) {
+function ExplainIcon() {
   return (
     <svg
       className="text-gray-800 mr-2 h-3.5 w-3.5 dark:text-white"
@@ -191,20 +193,6 @@ function ExplainIcon(props: Record<string, any>) {
         strokeWidth="2"
         d="M10 16.5c0-1-8-2.7-9-2V1.8c1-1 9 .707 9 1.706M10 16.5V3.506M10 16.5c0-1 8-2.7 9-2V1.8c-1-1-9 .707-9 1.706"
       />
-    </svg>
-  );
-}
-
-function ExplainingIcon(props: Record<string, any>) {
-  return (
-    <svg
-      className="text-gray-800 mr-2 h-3.5 w-3.5 dark:text-white"
-      aria-hidden="true"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="currentColor"
-      viewBox="0 0 20 18"
-    >
-      <path d="M9 1.334C7.06.594 1.646-.84.293.653a1.158 1.158 0 0 0-.293.77v13.973c0 .193.046.383.134.55.088.167.214.306.366.403a.932.932 0 0 0 .5.147c.176 0 .348-.05.5-.147 1.059-.32 6.265.851 7.5 1.65V1.334ZM19.707.653C18.353-.84 12.94.593 11 1.333V18c1.234-.799 6.436-1.968 7.5-1.65a.931.931 0 0 0 .5.147.931.931 0 0 0 .5-.148c.152-.096.279-.235.366-.403.088-.167.134-.357.134-.55V1.423a1.158 1.158 0 0 0-.293-.77Z" />
     </svg>
   );
 }
@@ -315,36 +303,6 @@ function ArchiveActiveIcon(props: Record<string, any>) {
         strokeWidth="2"
       />
       <path d="M8 12H12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function MoveInactiveIcon(props: Record<string, any>) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M10 4H16V10" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M16 4L8 12" stroke="#A78BFA" strokeWidth="2" />
-      <path d="M8 6H4V16H14V12" stroke="#A78BFA" strokeWidth="2" />
-    </svg>
-  );
-}
-
-function MoveActiveIcon(props: Record<string, any>) {
-  return (
-    <svg
-      {...props}
-      viewBox="0 0 20 20"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M10 4H16V10" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M16 4L8 12" stroke="#C4B5FD" strokeWidth="2" />
-      <path d="M8 6H4V16H14V12" stroke="#C4B5FD" strokeWidth="2" />
     </svg>
   );
 }

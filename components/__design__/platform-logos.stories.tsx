@@ -1,4 +1,4 @@
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import Apple from '@/components/Icons/Platform/Apple';
 import Choco from '@/components/Icons/Platform/Choco';

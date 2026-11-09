@@ -1,5 +1,5 @@
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 import type { FC } from 'react';
 
 import CodeBox from '@/components/Common/CodeBox';

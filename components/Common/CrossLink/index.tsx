@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import PrevNextArrow from '@/components/Common/PrevNextArrow';
 import Link from '@/components/Link';
-import type { FormattedMessage } from '@/types';
+import type { FormattedMessage } from '@/types/i18n';
 
 import styles from './index.module.css';
 

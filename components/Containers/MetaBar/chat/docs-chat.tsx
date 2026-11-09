@@ -8,11 +8,7 @@ import { useList } from 'react-use';
 import { AssistantMessage, UserMessage } from './docs-messages';
 
 export type GenerationStatus =
-  | 'pending'
-  | 'generating'
-  | 'generated'
-  | 'error'
-  | 'idle';
+  'pending' | 'generating' | 'generated' | 'error' | 'idle';
 
 export type Message = {
   id: string;
@@ -108,7 +104,7 @@ export function Chat(props: { children: ReactNode }) {
 
       setQuestion('');
       setGenerationStatus('generated');
-    } catch (error) {
+    } catch {
       setGenerationStatus('error');
     } finally {
       setGenerationStatus('idle');

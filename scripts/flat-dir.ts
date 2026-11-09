@@ -13,6 +13,6 @@ await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 for (const file of files) {
   console.log(file);
-  const content = await readFile(join(src,'../', file), 'utf-8');
+  const content = await readFile(join(src, '../', file), 'utf-8');
   await writeFile(join(dist, basename(file)), content);
 }

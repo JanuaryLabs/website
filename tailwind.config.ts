@@ -1,3 +1,4 @@
+import containerQueries from '@tailwindcss/container-queries';
 import type { Config } from 'tailwindcss';
 
 export default {
@@ -184,8 +185,5 @@ export default {
     },
   },
   darkMode: ['class', '[data-theme="dark"]'],
-  plugins: [
-    require('@savvywombat/tailwindcss-grid-areas'),
-    require('@tailwindcss/container-queries'),
-  ],
+  plugins: [containerQueries],
 } satisfies Config;

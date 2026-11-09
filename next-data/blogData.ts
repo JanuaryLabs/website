@@ -22,7 +22,7 @@ const getBlogData = (cat: string, page?: number): Promise<BlogPostsRSC> => {
         page ? providePaginatedBlogPosts(cat, page) : provideBlogPosts(cat)
     );
   }
-  
+
   const fetchURL = page
     ? // Provides a conditional fetch URL based on the given function parameters
       `${NEXT_DATA_URL}blog-data/${cat}/${page}`

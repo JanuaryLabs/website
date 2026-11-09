@@ -1,4 +1,4 @@
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import CrossLink from '@/components/Common/CrossLink';
 

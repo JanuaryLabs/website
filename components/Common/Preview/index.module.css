@@ -20,18 +20,18 @@
       blur-2xl
       content-['']
       @md/preview:blur-3xl;
+  }
 
-    &.announcements {
-      @apply from-green-700/90;
-    }
+  &.announcements::after {
+    @apply from-green-700/90;
+  }
 
-    &.release {
-      @apply from-info-600/90;
-    }
+  &.release::after {
+    @apply from-info-600/90;
+  }
 
-    &.vulnerability {
-      @apply from-warning-600/90;
-    }
+  &.vulnerability::after {
+    @apply from-warning-600/90;
   }
 
   .container {

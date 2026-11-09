@@ -2,6 +2,7 @@
 title: Node Cron Extension
 layout: learn
 ---
+
 ## Node Cron Extension
 
 The Node Cron extension is one of the scheduling extensions that allows you to trigger workflows at specific times using cron expressions.

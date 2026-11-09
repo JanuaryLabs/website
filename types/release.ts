@@ -30,8 +30,7 @@ export interface ReleaseDispatchActions {
 }
 
 export interface ReleaseContextType
-  extends ReleaseState,
-    ReleaseDispatchActions {}
+  extends ReleaseState, ReleaseDispatchActions {}
 
 export interface ReleaseProviderProps {
   children: ReactNode;

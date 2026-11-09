@@ -11,7 +11,7 @@ export function PromptForm() {
   const { question, setQuestion, generationStatus, submitQuestion } =
     useContext(ChatContext);
   return (
-    <div className="bg-accent sticky bottom-0 mt-4 flex items-center px-4 py-2 pl-2.5 pr-2">
+    <div className="sticky bottom-0 mt-4 flex items-center bg-accent px-4 py-2 pl-2.5 pr-2">
       <form
         className="flex w-full items-center justify-center space-x-1"
         onSubmit={e => {

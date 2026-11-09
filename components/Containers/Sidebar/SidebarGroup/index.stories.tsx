@@ -1,4 +1,4 @@
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import SidebarGroup from '@/components/Containers/Sidebar/SidebarGroup';
 

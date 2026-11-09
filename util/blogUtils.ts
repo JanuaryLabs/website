@@ -1,6 +1,5 @@
 import type { BlogPreviewType } from '@/types';
 
-
 export const mapBlogCategoryToPreviewType = (type: string): BlogPreviewType => {
   switch (type) {
     case 'announcements':

@@ -1,4 +1,4 @@
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import Avatar from '@/components/Common/AvatarGroup/Avatar';
 import { getGitHubAvatarUrl } from '@/util/gitHubUtils';

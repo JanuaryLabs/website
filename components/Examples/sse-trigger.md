@@ -8,10 +8,10 @@ workflow('StreamErrors', {
   trigger: trigger.sse({
     path: '/errors',
   }),
-  execute: async ({trigger}) => {
+  execute: async ({ trigger }) => {
     return merge(
       on(process, 'uncaughtException'),
-      on(process, 'unhandledRejection'),
+      on(process, 'unhandledRejection')
     );
   },
 });

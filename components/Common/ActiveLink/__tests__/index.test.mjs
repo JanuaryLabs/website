@@ -10,10 +10,7 @@ describe('ActiveLink', () => {
       </ActiveLink>
     );
 
-    expect(screen.findByText('Link')).resolves.toHaveAttribute(
-      'href',
-      '/link'
-    );
+    expect(screen.findByText('Link')).resolves.toHaveAttribute('href', '/link');
   });
 
   it('ignores active class when href not matches location.href', () => {

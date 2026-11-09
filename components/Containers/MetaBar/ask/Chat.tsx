@@ -7,14 +7,10 @@ import { Transition } from '@headlessui/react';
 import { useCallback, useEffect, useState } from 'react';
 import { Icons } from './Icons';
 import QuickActions from './QuickActions';
-import Button from '../../../Common/Button';
+import Button from '@/components/Common/Button';
 
 type GenerationStatus =
-  | 'pending'
-  | 'generating'
-  | 'generated'
-  | 'error'
-  | 'idle';
+  'pending' | 'generating' | 'generated' | 'error' | 'idle';
 
 type ChatProps = {
   post: string;
@@ -26,7 +22,10 @@ export default function Chat(props: ChatProps) {
   const [question, setQuestion] = useState<string>('');
   const [generationStatus, setGenerationStatus] =
     useState<GenerationStatus>('idle');
-  const [messages, setMessages] = useState<Array<Message>>([]);
+  const [messages, setMessages] = useState<Array<Message>>(
+    () =>
+      JSON.parse(sessionStorage.getItem(props.post) || '[]') as Array<Message>
+  );
   const [lastId, setLastId] = useState<string>(crypto.randomUUID());
 
   useEffect(() => {
@@ -40,14 +39,6 @@ export default function Chat(props: ChatProps) {
       chat.scrollTop = chat.scrollHeight;
     }
   }, [messages]);
-
-  useEffect(() => {
-    setMessages(
-      (JSON.parse(
-        sessionStorage.getItem(props.post) || '[]'
-      ) as Array<Message>) ?? ([] as Array<Message>)
-    );
-  }, []);
 
   const askQuestion = useCallback(
     async (aborter: AbortController) => {

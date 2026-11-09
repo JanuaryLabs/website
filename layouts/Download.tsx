@@ -6,7 +6,7 @@ import { useClientContext } from '@/hooks/react-server';
 
 import styles from './layouts.module.css';
 
-const DownloadLayout: FC<PropsWithChildren> = async () => {
+const DownloadLayout: FC<PropsWithChildren> = () => {
   const {
     frontmatter: { title, subtitle },
   } = useClientContext();

@@ -46,7 +46,7 @@ describe('Tabs', () => {
   });
 
   it('should render the given addons', async () => {
-    render(<Sut addons={<a href="/">addon</a>} />);
+    render(<Sut addons={<a href="#addon">addon</a>} />);
 
     expect(screen.getByRole('link', { name: 'addon' })).toBeInTheDocument();
   });

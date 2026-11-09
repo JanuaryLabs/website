@@ -1,6 +1,7 @@
 import type { FC, PropsWithChildren } from 'react';
 
 import Preview from '@/components/Common/Preview';
+import Link from '@/components/Link';
 import WithBlogCrossLinks from '@/components/withBlogCrossLinks';
 import WithFooter from '@/components/withFooter';
 import WithMetaBar from '@/components/withMetaBar';
@@ -37,11 +38,11 @@ const PostLayout: FC<PropsWithChildren> = ({ children }) => {
               <Preview title={frontmatter.title!} type={type} />
             )}
             <div className="rounded border p-4 font-semibold">
-              We're building <a href="/">January</a>, an all-in-one API
+              We're building <Link href="/">January</Link>, an all-in-one API
               development framework that enables you to build, integrate, test,
               and deploy APIs in one place.
               <br />
-              <a href="/learn/getting-started/quick-start">Read more</a>
+              <Link href="/learn/getting-started/quick-start">Read more</Link>
             </div>
 
             {children}

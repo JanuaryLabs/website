@@ -34,13 +34,13 @@ describe('Pagination', () => {
 
       expect(
         screen.getByRole('button', {
-          name: 'components.common.pagination.prevAriaLabel',
+          name: 'Previous page',
         })
       ).toBeVisible();
 
       expect(
         screen.getByRole('button', {
-          name: 'components.common.pagination.nextAriaLabel',
+          name: 'Next page',
         })
       ).toBeVisible();
     });
@@ -160,7 +160,7 @@ describe('Pagination', () => {
 
       expect(
         screen.getByRole('button', {
-          name: 'components.common.pagination.prevAriaLabel',
+          name: 'Previous page',
         })
       ).toHaveAttribute('aria-disabled');
     });
@@ -173,7 +173,7 @@ describe('Pagination', () => {
 
       expect(
         screen.getByRole('button', {
-          name: 'components.common.pagination.nextAriaLabel',
+          name: 'Next page',
         })
       ).toHaveAttribute('aria-disabled');
     });

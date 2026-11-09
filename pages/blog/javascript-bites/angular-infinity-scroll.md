@@ -28,8 +28,10 @@ You're going to implement Infinity Scroll as Directive and Pipe, and see the pro
 /**
  * Infinity Scroll Options excluding the element
  */
-export interface InfinityScrollDirectiveOptions<T>
-  extends Omit<InfinityScrollOptions<T>, 'element'> {
+export interface InfinityScrollDirectiveOptions<T> extends Omit<
+  InfinityScrollOptions<T>,
+  'element'
+> {
   /**
    * User defined Observable that
    * tells if all data had been loaded.

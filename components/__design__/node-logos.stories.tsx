@@ -1,4 +1,4 @@
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import JsIconGreen from '@/components/Icons/Logos/JsIconGreen';
 import JsIconWhite from '@/components/Icons/Logos/JsIconWhite';

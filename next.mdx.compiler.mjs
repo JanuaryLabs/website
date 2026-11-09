@@ -32,7 +32,7 @@ export async function compileMDX(source, fileExtension) {
 
   // This is a minimal MDX Compiler that is lightweight and only parses the MDX
   const { default: MDXContent } = await evaluate(source, {
-    rehypePlugins: NEXT_REHYPE_PLUGINS({hideCopyButton: true}),
+    rehypePlugins: NEXT_REHYPE_PLUGINS({ hideCopyButton: true }),
     remarkPlugins: NEXT_REMARK_PLUGINS,
     format: fileExtension,
     ...reactRuntime,

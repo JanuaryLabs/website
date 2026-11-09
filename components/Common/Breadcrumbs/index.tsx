@@ -6,7 +6,7 @@ import BreadcrumbItem from '@/components/Common/Breadcrumbs/BreadcrumbItem';
 import BreadcrumbLink from '@/components/Common/Breadcrumbs/BreadcrumbLink';
 import BreadcrumbRoot from '@/components/Common/Breadcrumbs/BreadcrumbRoot';
 import BreadcrumbTruncatedItem from '@/components/Common/Breadcrumbs/BreadcrumbTruncatedItem';
-import { FormattedMessage } from '../../../types/i18n';
+import type { FormattedMessage } from '@/types/i18n';
 
 export type BreadcrumbLink = {
   label: FormattedMessage;

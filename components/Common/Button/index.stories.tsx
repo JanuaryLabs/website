@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from '@heroicons/react/24/solid';
-import type { Meta as MetaObj, StoryObj } from '@storybook/react';
+import type { Meta as MetaObj, StoryObj } from '@storybook/nextjs';
 
 import Button from '@/components/Common/Button';
 

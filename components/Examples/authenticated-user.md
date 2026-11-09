@@ -12,7 +12,7 @@ feature('UsersFeature', {
         method: 'get',
         path: '/user/:id',
       }),
-      execute: async ({trigger}) => {
+      execute: async ({ trigger }) => {
         // do something
       },
     }),
