@@ -1,5 +1,4 @@
 'use client';
-import type { Message } from 'ai/react';
 import Markdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 
@@ -8,6 +7,12 @@ import { useCallback, useEffect, useState } from 'react';
 import { Icons } from './Icons';
 import QuickActions from './QuickActions';
 import Button from '@/components/Common/Button';
+
+type Message = {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+};
 
 type GenerationStatus =
   'pending' | 'generating' | 'generated' | 'error' | 'idle';
