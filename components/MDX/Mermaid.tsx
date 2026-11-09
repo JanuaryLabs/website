@@ -8,6 +8,11 @@ const Mermaid = ({ chart }: { chart: string }) => {
     (async () => {
       const { default: mermaid } = await import('mermaid');
       if (mermaidRef.current) {
+        // Mermaid sizes each label to its text and clips what overflows, so a label
+        // measured in the fallback font loses letters when the page font arrives
+        await document.fonts.load(
+          `16px ${getComputedStyle(document.documentElement).getPropertyValue('--font-inter')}`
+        );
         mermaid.initialize({
           startOnLoad: true,
 
