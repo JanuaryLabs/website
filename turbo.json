@@ -73,19 +73,30 @@
     },
     "lint:js": {
       "inputs": [
-        "{app,components,hooks,layouts,middlewares,pages,providers,types,util}/**/*.{ts,tsx,mjs}",
-        "{next-data,scripts}/**/*.{mjs,json}",
-        "{.storybook,public}/**/*.{ts,js,json}",
-        "*.{json,ts,tsx}"
+        "**/*.{js,mjs,ts,tsx}",
+        "{next-data,scripts}/**/*.json",
+        "{.storybook,public}/**/*.json",
+        "*.json",
+        "!{node_modules,.next,.turbo,.swc,build,coverage,storybook-static}/**"
       ],
       "outputs": [".eslintjscache"]
     },
     "lint:md": {
-      "inputs": ["{app,pages}/**/*.{md,mdx}", "*.{md,mdx}"],
+      "inputs": [
+        "**/*.{md,mdx}",
+        "eslint.config.mjs",
+        ".remarkrc.json",
+        "!{node_modules,.next,.turbo,.swc,build,coverage,storybook-static}/**"
+      ],
       "outputs": [".eslintmdcache"]
     },
     "lint:css": {
-      "inputs": ["{app,components,layouts,pages,styles}/**/*.css"],
+      "inputs": [
+        "**/*.css",
+        ".stylelintrc.mjs",
+        ".stylelintignore",
+        "!{node_modules,.next,.turbo,.swc,build,coverage,storybook-static}/**"
+      ],
       "outputs": [".stylelintcache"]
     },
     "lint:fix": {
