@@ -42,6 +42,7 @@ describe('useNavigationState', () => {
   it('should save the position of the last scroll when unmounted before the save runs', () => {
     const navigationState = new Map();
     const element = document.createElement('nav');
+    element.scrollLeft = 15;
     element.scrollTop = 40;
     const { unmount } = renderHook(
       () => useNavigationState('sidebar', { current: element }, 0),
@@ -66,7 +67,7 @@ describe('useNavigationState', () => {
     element.scrollTop = 0;
     unmount();
 
-    expect(navigationState.get('sidebar')).toEqual({ x: 0, y: 40 });
+    expect(navigationState.get('sidebar')).toEqual({ x: 15, y: 40 });
   });
 
   it('should save each pending position under the id it was scrolled under when the id changes', async () => {

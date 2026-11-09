@@ -37,8 +37,8 @@ const useNavigationState = <T extends HTMLElement>(
 
       return () => {
         element.removeEventListener('scroll', handleScroll);
-        // flushOnExit covers unmount only; an id change must also save now,
-        // or a scroll under the new id replaces the pending save of the old.
+        // A pending save must land on unmount and on an id change, with the id
+        // and position captured at its scroll.
         savePosition.flush();
       };
     }
